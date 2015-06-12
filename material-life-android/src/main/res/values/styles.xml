@@ -1,0 +1,5 @@
+<resources>
+
+  <style name="MaterialLifeTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
+</resources>

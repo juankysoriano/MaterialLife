@@ -1,0 +1,124 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'org.robolectric:robolectric-gradle-plugin:1.0.1'
+        classpath 'io.fabric.tools:gradle:1.18.0'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+
+dependencies {
+    compile('com.crashlytics.sdk.android:crashlytics:2.2.2@aar') {
+        transitive = true;
+    }
+}
+
+android {
+    def crashLyticsApiKey = project.hasProperty('crashLyticsApiKey') ? crashLyticsApiKey : '' //this value is from ~/.gradle/gradle.properties
+    project.archivesBaseName = "$rootProject.name";
+
+    compileSdkVersion rootProject.ext.COMPILE_SDK
+    buildToolsVersion rootProject.ext.BUILD_TOOLS
+    defaultConfig {
+        applicationId 'com.juankysoriano.materiallife'
+        testApplicationId 'com.juankysoriano.materiallife.test'
+
+        minSdkVersion rootProject.ext.MIN_SDK
+        targetSdkVersion rootProject.ext.TARGET_SDK
+        versionCode rootProject.ext.VERSION_CODE
+        versionName rootProject.ext.VERSION_NAME
+
+        proguardFile getDefaultProguardFile('proguard-android.txt')
+        proguardFile 'proguard-rules.pro'
+
+        manifestPlaceholders = [crashLyticsApiKey: crashLyticsApiKey]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storePassword "mypassword"
+            keyAlias "KeyAlias"
+            keyPassword "mypassword"
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            ext.enableCrashlytics = crashLyticsApiKey != ''
+            buildConfigField "Boolean", "ANALYTICS_DISABLED", "true"
+        }
+        release {
+            jniDebuggable false
+            shrinkResources true
+            minifyEnabled true
+            ext.enableCrashlytics = crashLyticsApiKey != ''
+            buildConfigField "Boolean", "ANALYTICS_DISABLED", "false"
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    dependencies {
+        compile 'com.github.juankysoriano:open-ca:v0.1.2'
+        compile 'com.github.juankysoriano:rainbow:v1.0.0-rc3'
+        compile 'com.github.juankysoriano:CircularFloatingActionMenu:v0.6.0'
+        compile 'com.google.android.gms:play-services-analytics:7.5.0'
+        compile 'com.nineoldandroids:library:2.4.0'
+        compile 'com.android.support:support-annotations:20.0.0'
+        compile 'com.android.support:appcompat-v7:22.2.0'
+        compile 'com.afollestad:material-dialogs:0.6.3.3'
+        compile 'de.hdodenhof:circleimageview:1.2.2'
+        compile('com.novoda:notils:2.2.11') {
+            exclude module: 'support-v4'
+        }
+
+        testCompile 'org.robolectric:robolectric:3.0-rc3'
+        testCompile 'org.mockito:mockito-all:1.10.19'
+        testCompile 'com.squareup:fest-android:1.0.8'
+        testCompile 'junit:junit:4.12'
+    }
+}
+
+ext {
+    REPORT_LOCATIONS = ""
+}
+
+def buildTimeFormatted() {
+    Calendar instance = Calendar.getInstance()
+    instance.setTimeInMillis(System.currentTimeMillis())
+    instance.getTime()
+}
+
+apply from: "$project.rootDir/analysis-tools/android-robolectric.gradle"
+apply from: "$project.rootDir/analysis-tools/android-jacoco.gradle"
+apply from: "$project.rootDir/analysis-tools/android-checkstyle.gradle"
+apply from: "$project.rootDir/analysis-tools/android-pmd.gradle"
+apply from: "$project.rootDir/analysis-tools/android-findbugs.gradle"
+
+task lifeCheck dependsOn("check") {
+    println "Finished at: " + new Date();
+
+    println "\n"
+    println REPORT_LOCATIONS
+}
+
+task life dependsOn("build") {
+}
+
+life.dependsOn("lifeCheck")
+
+

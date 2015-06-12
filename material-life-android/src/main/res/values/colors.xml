@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorAccent">#FF5252</color>
+  <color name="colorPrimaryLight">#C5CAE9</color>
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorSketch">#FFFDE7</color>
+  <color name="dark_brush">#212121</color>
+  <color name="amber_brush">#FFC107</color>
+  <color name="divider">#21212121</color>
+</resources>
