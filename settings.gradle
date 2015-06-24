@@ -1,1 +1,4 @@
-include ':material-life-android'
+include ':material-life-android', ':openca', 'rainbow'
+project(':openca').projectDir = new File('.','../openca')
+project(':rainbow').projectDir = new File('.', '../rainbow/rainbow-lib')
+

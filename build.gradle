@@ -5,15 +5,11 @@ subprojects {
             maven {
                 url "https://oss.sonatype.org/content/repositories/snapshots"
             }
-            maven {
-                url 'https://maven.fabric.io/public'
-            }
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:1.2.3'
             classpath 'com.github.dcendents:android-maven-plugin:1.2'
             classpath 'org.robolectric:robolectric-gradle-plugin:1.1.0'
-            classpath 'io.fabric.tools:gradle:1.19.1'
         }
     }
 
@@ -22,10 +18,6 @@ subprojects {
 
         maven {
             url "https://jitpack.io"
-        }
-
-        maven {
-            url 'https://maven.fabric.io/public'
         }
 
         maven {

@@ -1,26 +1,12 @@
 buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
-
     dependencies {
         classpath 'org.robolectric:robolectric-gradle-plugin:1.0.1'
-        classpath 'io.fabric.tools:gradle:1.18.0'
     }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
-
-
-dependencies {
-    compile('com.crashlytics.sdk.android:crashlytics:2.2.2@aar') {
-        transitive = true;
-    }
-}
 
 android {
-    def crashLyticsApiKey = project.hasProperty('crashLyticsApiKey') ? crashLyticsApiKey : '' //this value is from ~/.gradle/gradle.properties
     project.archivesBaseName = "$rootProject.name";
 
     compileSdkVersion rootProject.ext.COMPILE_SDK
@@ -54,15 +40,11 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
-            ext.enableCrashlytics = crashLyticsApiKey != ''
-            buildConfigField "Boolean", "ANALYTICS_DISABLED", "true"
         }
         release {
             jniDebuggable false
             shrinkResources true
             minifyEnabled true
-            ext.enableCrashlytics = crashLyticsApiKey != ''
-            buildConfigField "Boolean", "ANALYTICS_DISABLED", "false"
         }
     }
 
@@ -73,12 +55,13 @@ android {
     }
 
     dependencies {
-        compile 'com.github.juankysoriano:open-ca:v0.1.2'
-        compile 'com.github.juankysoriano:rainbow:v1.0.0-rc3'
+        compile project(':openca')
+        compile project(':rainbow')
+        compile 'com.android.support:design:22.2.0'
         compile 'com.github.juankysoriano:CircularFloatingActionMenu:v0.6.0'
         compile 'com.google.android.gms:play-services-analytics:7.5.0'
         compile 'com.nineoldandroids:library:2.4.0'
-        compile 'com.android.support:support-annotations:20.0.0'
+        compile 'com.android.support:support-annotations:22.2.0'
         compile 'com.android.support:appcompat-v7:22.2.0'
         compile 'com.afollestad:material-dialogs:0.6.3.3'
         compile 'de.hdodenhof:circleimageview:1.2.2'

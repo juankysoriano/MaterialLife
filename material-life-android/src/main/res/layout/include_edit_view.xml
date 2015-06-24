@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.juankysoriano.materiallife.ui.sketch.editor.EditorView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/edit_layout"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:visibility="gone"
+  tools:showIn="@layout/world">
+
+  <com.juankysoriano.materiallife.ui.sketch.menu.reveal.RevealView
+    android:id="@+id/reveal_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible" />
+
+  <LinearLayout
+    android:background="@color/primary"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_alignParentBottom="true">
+
+    <com.juankysoriano.materiallife.ui.sketch.PixelButton
+      android:id="@+id/edit_fab_cancel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:text="Cancel"
+      android:textAlignment="center"
+      android:textSize="20sp" />
+
+    <Space
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1" />
+
+    <com.juankysoriano.materiallife.ui.sketch.PixelButton
+      android:id="@+id/edit_fab_clear"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:text="Clear World"
+      android:textAlignment="center"
+      android:textSize="20sp" />
+
+    <Space
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1" />
+
+    <com.juankysoriano.materiallife.ui.sketch.PixelButton
+      android:id="@+id/edit_fab_accept"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:text="Done"
+      android:textAlignment="center"
+      android:textSize="20sp" />
+  </LinearLayout>
+
+</com.juankysoriano.materiallife.ui.sketch.editor.EditorView>

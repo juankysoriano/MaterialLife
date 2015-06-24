@@ -25,8 +25,8 @@
     </activity>
 
     <meta-data
-      android:name="io.fabric.ApiKey"
-      android:value="${crashLyticsApiKey}" />
+            android:name="io.fabric.ApiKey"
+            android:value="c51e9872cbc936c119bd9e28445756fc5c6d734d" />
 
     <meta-data
       android:name="com.google.android.gms.version"

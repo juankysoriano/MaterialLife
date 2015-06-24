@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.juankysoriano.materiallife.ui.sketch.WorldView xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/world"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:background="@android:color/black"
-  android:orientation="horizontal"
-  tools:ignore="Overdraw">
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/black">
 
-  <com.juankysoriano.materiallife.ui.sketch.clear.ClearView
-    android:id="@+id/reveal_view"
+  <RelativeLayout
+    android:id="@+id/menu_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone" />
-</com.juankysoriano.materiallife.ui.sketch.WorldView>
+    android:gravity="bottom" />
+
+  <!--  <include layout="@layout/include_edit_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+    <include layout="@layout/include_menu_view"
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      android:layout_centerHorizontal="true"
+      android:layout_alignParentBottom="true"/>-->
+</FrameLayout>
 

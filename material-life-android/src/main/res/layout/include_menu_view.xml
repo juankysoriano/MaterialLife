@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.juankysoriano.materiallife.ui.sketch.menu.MenuView xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/menu_layout"
+  android:layout_width="match_parent"
+  android:layout_height="200dp"
+  tools:showIn="@layout/world">
+
+  <com.juankysoriano.materiallife.ui.sketch.menu.reveal.RevealView
+    android:id="@+id/reveal_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible" />
+
+  <com.juankysoriano.materiallife.ui.sketch.menu.MenuOptions
+    android:id="@+id/menu_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
+    android:background="@color/primary"
+    android:listSelector="@drawable/list_view_selector"
+    android:scaleX="0"
+    android:scaleY="0"
+    android:alpha="0"
+    android:visibility="invisible" />
+
+  <com.juankysoriano.materiallife.ui.sketch.menu.MenuButton
+    android:id="@+id/menu_fab_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:fabSize="normal"
+    app:elevation="6dp"
+    app:pressedTranslationZ="12dp"
+    app:borderWidth="0dp"
+    android:src="@mipmap/ic_launcher"
+    android:layout_margin="24dp"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentBottom="true" />
+</com.juankysoriano.materiallife.ui.sketch.menu.MenuView>
