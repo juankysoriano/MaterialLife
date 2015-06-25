@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.ui.sketch.menu.reveal;
+package com.juankysoriano.materiallife.ui.sketch.reveal;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
