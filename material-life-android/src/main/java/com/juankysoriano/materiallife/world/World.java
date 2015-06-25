@@ -23,7 +23,6 @@ public class World extends Rainbow {
     public void onSketchSetup() {
         super.onSketchSetup();
         gameOfLife = GameOfLife.newInstance(getRainbowDrawer(), getRainbowInputController());
-
     }
 
     public void startEdition() {
