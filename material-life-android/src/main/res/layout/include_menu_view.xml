@@ -8,13 +8,13 @@
   android:layout_height="200dp"
   tools:showIn="@layout/world">
 
-  <com.juankysoriano.materiallife.ui.sketch.menu.reveal.RevealView
+  <com.juankysoriano.materiallife.ui.sketch.reveal.RevealView
     android:id="@+id/reveal_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="invisible" />
 
-  <com.juankysoriano.materiallife.ui.sketch.menu.MenuOptions
+  <com.juankysoriano.materiallife.ui.sketch.menu.MenuOptionsView
     android:id="@+id/menu_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
