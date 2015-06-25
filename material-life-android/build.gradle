@@ -23,7 +23,6 @@ android {
         proguardFile getDefaultProguardFile('proguard-android.txt')
         proguardFile 'proguard-rules.pro'
 
-        manifestPlaceholders = [crashLyticsApiKey: crashLyticsApiKey]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
