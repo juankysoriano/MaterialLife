@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.menus;
+package com.juankysoriano.materiallife.menu;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,23 +9,24 @@ import android.view.ViewGroup;
 
 import com.juankysoriano.materiallife.R;
 import com.juankysoriano.materiallife.ui.sketch.menu.MenuButton;
-import com.juankysoriano.materiallife.ui.sketch.menu.MenuItem;
-import com.juankysoriano.materiallife.ui.sketch.menu.MenuOptions;
+import com.juankysoriano.materiallife.ui.sketch.menu.MenuOptionsView;
 import com.juankysoriano.materiallife.ui.sketch.menu.MenuView;
 import com.novoda.notils.caster.Views;
 
-public class MenuFragment extends Fragment {
+public class MainMenuFragment extends Fragment implements MainMenu {
+    public static final String TAG = "MainMenuFragment";
 
     private MenuView menuView;
-    private MenuOptions menuOptions;
+    private MenuOptionsView menuOptionsView;
     private MenuButton menuButton;
+    private MenuOptionsView.OnItemSelectedListener attachedItemSelectedListener;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.include_menu_view, container, false);
         menuView = Views.findById(fragmentView, R.id.menu_layout);
-        menuOptions = Views.findById(fragmentView, R.id.menu_list);
+        menuOptionsView = Views.findById(fragmentView, R.id.menu_list);
         menuButton = Views.findById(fragmentView, R.id.menu_fab_button);
         return fragmentView;
     }
@@ -38,7 +39,7 @@ public class MenuFragment extends Fragment {
 
     private void attachListeners() {
         menuButton.setOnClickListener(onMenuButtonClickListener);
-        menuOptions.setOnMenuItemSelectedListener(onItemSelectedListener);
+        menuOptionsView.setOnMenuItemSelectedListener(onItemSelectedListener);
     }
 
     private View.OnClickListener onMenuButtonClickListener = new View.OnClickListener() {
@@ -48,20 +49,52 @@ public class MenuFragment extends Fragment {
         }
     };
 
-    private MenuOptions.OnItemSelectedListener onItemSelectedListener = new MenuOptions.OnItemSelectedListener() {
+    private MenuOptionsView.OnItemSelectedListener onItemSelectedListener = new MenuOptionsView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(MenuItem item) {
-            switch (item) {
-                case EDIT_WORLD:
-                    /*worldEditor.startEdition();*/
-                    break;
+            if (hasAttachedItemSelectedListener()) {
+                attachedItemSelectedListener.onItemSelected(item);
             }
         }
     };
 
+    @Override
+    public void attachItemSelectedListener(MenuOptionsView.OnItemSelectedListener listener) {
+        attachedItemSelectedListener = listener;
+    }
+
+    @Override
+    public void detachItemSelectedListener() {
+        attachedItemSelectedListener = null;
+    }
+
+    @Override
+    public boolean isOpened() {
+        return menuView.isMenuOpened();
+    }
+
+    @Override
+    public void closeMenu() {
+        menuView.closeMenu();
+    }
+
+    @Override
+    public void openMenu() {
+        menuView.openMenu();
+    }
+
+    @Override
+    public MainMenuFragment getFragment() {
+        return this;
+    }
+
+    private boolean hasAttachedItemSelectedListener() {
+        return attachedItemSelectedListener != null;
+    }
+
     private void detachListeners() {
         menuButton.setOnClickListener(null);
-        menuOptions.setOnMenuItemSelectedListener(null);
+        menuOptionsView.setOnMenuItemSelectedListener(null);
     }
 
     @Override

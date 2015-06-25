@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.ui.sketch.menu;
+package com.juankysoriano.materiallife.menu;
 
 public enum MenuItem {
     EDIT_WORLD("Edit World"),

@@ -11,9 +11,10 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.juankysoriano.materiallife.menu.MenuItem;
 import com.novoda.notils.caster.Classes;
 
-public class MenuOptions extends ListView {
+public class MenuOptionsView extends ListView {
     private static final String ALPHA = "alpha";
     private static final String SCALE_X = "scaleX";
     private static final String SCALE_Y = "scaleY";
@@ -29,11 +30,11 @@ public class MenuOptions extends ListView {
 
     private OnItemSelectedListener onMenuOnItemSelectedListener;
 
-    public MenuOptions(Context context, AttributeSet attrs) {
+    public MenuOptionsView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MenuOptions(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MenuOptionsView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

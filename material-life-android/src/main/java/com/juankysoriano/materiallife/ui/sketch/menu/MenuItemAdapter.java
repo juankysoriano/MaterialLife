@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import com.juankysoriano.materiallife.ContextRetriever;
 import com.juankysoriano.materiallife.R;
+import com.juankysoriano.materiallife.menu.MenuItem;
 import com.juankysoriano.materiallife.ui.sketch.PixelTextView;
 import com.novoda.notils.caster.Views;
 

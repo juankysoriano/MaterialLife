@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.juankysoriano.materiallife.R;
-import com.juankysoriano.materiallife.ui.sketch.menu.reveal.RevealView;
+import com.juankysoriano.materiallife.ui.sketch.reveal.RevealView;
 import com.juankysoriano.materiallife.ui.util.ViewMeasurer;
 import com.novoda.notils.caster.Views;
 
 public class MenuView extends RelativeLayout {
     private RevealView revealView;
     private MenuButton menuButton;
-    private MenuOptions menuOptions;
+    private MenuOptionsView menuOptionsView;
     private boolean menuOpened;
 
     public MenuView(Context context, AttributeSet attrs) {
@@ -32,8 +32,8 @@ public class MenuView extends RelativeLayout {
         super.onFinishInflate();
         revealView = Views.findById(this, R.id.reveal_view);
         menuButton = Views.findById(this, R.id.menu_fab_button);
-        menuOptions = Views.findById(this, R.id.menu_list);
-        menuOptions.setAdapter(MenuItemAdapter.newInstance());
+        menuOptionsView = Views.findById(this, R.id.menu_list);
+        menuOptionsView.setAdapter(MenuItemAdapter.newInstance());
     }
 
     @Override
@@ -68,7 +68,7 @@ public class MenuView extends RelativeLayout {
 
     private void doRevealAnimation() {
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(menuOptions.animateShow(), menuButton.animateHide());
+        animatorSet.playTogether(menuOptionsView.animateShow(), menuButton.animateHide());
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -80,7 +80,7 @@ public class MenuView extends RelativeLayout {
 
     private void doConcealAnimation() {
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(menuOptions.animateHide(), menuButton.animateShow());
+        animatorSet.playTogether(menuOptionsView.animateHide(), menuButton.animateShow());
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
