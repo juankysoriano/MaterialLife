@@ -11,10 +11,11 @@
     android:layout_height="match_parent"
     android:visibility="invisible" />
 
-  <RelativeLayout
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="@dimen/edit_menu_height"
     android:layout_alignParentBottom="true"
+    android:orientation="horizontal"
     android:background="@color/accent">
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
@@ -22,26 +23,33 @@
       android:id="@+id/edit_fab_cancel"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:layout_alignParentStart="true"
       android:text="@string/cancel_button_text" />
+
+    <Space
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="0dp"/>
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
       style="@style/PixelText.Button"
       android:id="@+id/edit_fab_clear"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:text="@string/clear_button_text"
-      android:layout_centerHorizontal="true" />
+      android:text="@string/clear_button_text" />
+
+    <Space
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="0dp" />
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
       style="@style/PixelText.Button"
       android:id="@+id/edit_fab_accept"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:layout_alignParentEnd="true"
       android:text="@string/done_button_text" />
 
-  </RelativeLayout>
+  </LinearLayout>
 
 </com.juankysoriano.materiallife.ui.sketch.editor.EditorMenuView>
 

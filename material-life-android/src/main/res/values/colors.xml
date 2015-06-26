@@ -2,7 +2,6 @@
 <resources>
   <color name="primary">#D4011B</color>
   <color name="primary_dark">#900009</color>
-  <color name="primary_light">#F4000F</color>
   <color name="accent">#D4011B</color>
   <color name="accent_translucent">#80FFEB3B</color>
   <color name="accent_bright">#FFF493</color>
