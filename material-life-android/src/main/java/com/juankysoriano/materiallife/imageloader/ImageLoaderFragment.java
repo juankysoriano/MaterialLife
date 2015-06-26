@@ -1,5 +1,6 @@
 package com.juankysoriano.materiallife.imageloader;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.juankysoriano.materiallife.R;
+import com.juankysoriano.materiallife.WorldRetriever;
+import com.juankysoriano.materiallife.editor.WorldEditor;
 import com.juankysoriano.materiallife.ui.sketch.PixelButton;
 import com.novoda.notils.caster.Views;
 
@@ -17,6 +20,7 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
     private PixelButton cameraButton;
     private PixelButton galleryButton;
     private OnLoadImageSelectedListener onLoadImageSelectedListener;
+    private WorldEditor worldEditor;
 
     @Nullable
     @Override
@@ -24,6 +28,7 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
         View fragmentView = inflater.inflate(R.layout.include_image_selector, container, false);
         cameraButton = Views.findById(fragmentView, R.id.from_camera);
         galleryButton = Views.findById(fragmentView, R.id.from_gallery);
+        worldEditor = new WorldEditor(WorldRetriever.INSTANCE.getWorld());
         return fragmentView;
     }
 
@@ -42,6 +47,7 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
         @Override
         public void onClick(View v) {
             if (hasLoadImageListener()) {
+                worldEditor.startEdition();
                 onLoadImageSelectedListener.onLoadImage(ImageLoaderAction.CAMERA);
             }
         }
@@ -51,6 +57,7 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
         @Override
         public void onClick(View v) {
             if (hasLoadImageListener()) {
+                worldEditor.startEdition();
                 onLoadImageSelectedListener.onLoadImage(ImageLoaderAction.GALLERY);
             }
         }
@@ -73,6 +80,17 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
     @Override
     public ImageLoaderFragment getFragment() {
         return this;
+    }
+
+    @Override
+    public void loadWorldFrom(Uri imageUri) {
+        worldEditor.loadWorldFrom(imageUri);
+    }
+
+    @Override
+    public void abortPictureLoading() {
+        worldEditor.cancel();
+        worldEditor.endEdition();
     }
 
     private void detachListeners() {

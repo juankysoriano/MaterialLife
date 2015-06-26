@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class PixelTextView extends TextView {
 
-    public static final String FONT_PATH = "fonts/pixel.ttf";
+    private static final String FONT_PATH = "fonts/pixel.ttf";
 
     public PixelTextView(Context context, AttributeSet attrs) {
         super(context, attrs);

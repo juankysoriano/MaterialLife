@@ -1,12 +1,18 @@
 package com.juankysoriano.materiallife.world;
 
+import android.net.Uri;
+
 import com.juankysoriano.materiallife.world.performer.GameOfLife;
 import com.juankysoriano.rainbow.core.Rainbow;
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
 import com.juankysoriano.rainbow.core.event.RainbowInputController;
+import com.juankysoriano.rainbow.core.graphics.RainbowImage;
 
-public class World extends Rainbow {
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+public class World extends Rainbow implements RainbowImage.LoadPictureListener {
+    private static final ExecutorService executor = Executors.newSingleThreadExecutor();
     private GameOfLife gameOfLife;
 
     public static World newInstance() {
@@ -44,5 +50,25 @@ public class World extends Rainbow {
 
     public void restoreLastWorld() {
         gameOfLife.restoreLastWorld();
+    }
+
+    public void loadWorldFrom(final Uri image) {
+        gameOfLife.fastClear();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                getRainbowDrawer().loadImage(image, RainbowImage.LOAD_CENTER_CROP, World.this);
+            }
+        });
+    }
+
+    @Override
+    public void onLoadSucceed(RainbowImage image) {
+        gameOfLife.loadWorldFrom(image);
+    }
+
+    @Override
+    public void onLoadFail() {
+        restoreLastWorld();
     }
 }

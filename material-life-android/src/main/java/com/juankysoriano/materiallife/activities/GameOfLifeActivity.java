@@ -76,15 +76,19 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
 
     private EditorMenuView.OnActionSelectedListener onActionSelectedListener = new EditorMenuView.OnActionSelectedListener() {
         @Override
-        public void onActionPerformed(EditorAction item) {
-            addMainMenu();
+        public void onActionPerformed(EditorAction action) {
+            switch (action) {
+                case DONE:
+                case CANCEL:
+                    addMainMenu();
+                    break;
+            }
         }
     };
 
     private ImageLoader.OnLoadImageSelectedListener onLoadImageSelectedListener = new ImageLoader.OnLoadImageSelectedListener() {
         @Override
         public void onLoadImage(ImageLoaderAction action) {
-            addMainMenu();
             switch (action) {
                 case CAMERA:
                     materialLifePictureRetriever.openCameraForResult();
@@ -101,10 +105,20 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
         super.onActivityResult(requestCode, resultCode, data);
         ImageLoaderResult imageLoaderResult = ImageLoaderResult.from(requestCode);
 
+        if (resultCode != RESULT_OK) {
+            imageLoader.abortPictureLoading();
+            addMainMenu();
+            return;
+        }
+
         switch (imageLoaderResult) {
             case CAMERA:
+                imageLoader.loadWorldFrom(materialLifePictureRetriever.getLastLoadedImagePath());
+                addEditorMenu();
                 break;
             case GALLERY:
+                imageLoader.loadWorldFrom(data.getData());
+                addEditorMenu();
                 break;
         }
     }
@@ -153,7 +167,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     public void onBackPressed() {
         if (hasMainMenu() && mainMenu.isOpened()) {
             mainMenu.closeMenu();
-        } else if (hasEditorMenu()) {
+        } else if (hasEditorMenu() || hasImageLoader()) {
             addMainMenu();
         } else {
             super.onBackPressed();

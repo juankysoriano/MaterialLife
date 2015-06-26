@@ -69,6 +69,6 @@ public class EditorMenuView extends RelativeLayout {
     }
 
     public interface OnActionSelectedListener {
-        void onActionPerformed(EditorAction item);
+        void onActionPerformed(EditorAction action);
     }
 }

@@ -25,12 +25,12 @@ public class MaterialLifePictureRetriever {
         }
     }
 
-    public String getLastLoadedImagePath() {
-        return lastLoadedImagePath;
+    public Uri getLastLoadedImagePath() {
+        return Uri.parse(lastLoadedImagePath);
     }
 
     public void openGalleryForResult() {
-        ContextRetriever.INSTANCE.getActivity().startActivityForResult(createIntentForGallery(), ImageLoaderResult.CAMERA.getCode());
+        ContextRetriever.INSTANCE.getActivity().startActivityForResult(createIntentForGallery(), ImageLoaderResult.GALLERY.getCode());
     }
 
     private Intent createIntentForCamera() {
@@ -44,8 +44,7 @@ public class MaterialLifePictureRetriever {
     }
 
     private Intent createIntentForGallery() {
-        return new Intent(Intent.ACTION_PICK)
-                .setType("image/*");
+        return new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
     }
 
     private File createImageFile() throws IOException {

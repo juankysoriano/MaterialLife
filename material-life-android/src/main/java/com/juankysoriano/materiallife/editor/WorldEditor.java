@@ -1,5 +1,7 @@
 package com.juankysoriano.materiallife.editor;
 
+import android.net.Uri;
+
 import com.juankysoriano.materiallife.world.World;
 
 public class WorldEditor {
@@ -23,5 +25,9 @@ public class WorldEditor {
 
     public void endEdition() {
         world.endEdition();
+    }
+
+    public void loadWorldFrom(Uri image) {
+        world.loadWorldFrom(image);
     }
 }

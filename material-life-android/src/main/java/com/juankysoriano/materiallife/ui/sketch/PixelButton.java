@@ -7,7 +7,7 @@ import android.widget.Button;
 
 public class PixelButton extends Button {
 
-    public static final String FONT_PATH = "fonts/pixel.ttf";
+    private static final String FONT_PATH = "fonts/pixel.ttf";
 
     public PixelButton(Context context, AttributeSet attrs) {
         super(context, attrs);

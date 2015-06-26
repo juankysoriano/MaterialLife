@@ -3,7 +3,6 @@ package com.juankysoriano.materiallife.menu;
 public enum MenuItem {
     EDIT_WORLD("Edit World"),
     LOAD_WORLD("Load World"),
-    SETTINGS("Settings"),
     INFO("Info");
 
     String value;
