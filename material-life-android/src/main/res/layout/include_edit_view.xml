@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <com.juankysoriano.materiallife.ui.sketch.editor.EditorMenuView xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/edit_layout"
   android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  tools:showIn="@layout/world">
+  android:layout_height="wrap_content">
 
   <com.juankysoriano.materiallife.ui.sketch.reveal.RevealView
     android:id="@+id/reveal_view"
@@ -13,50 +11,37 @@
     android:layout_height="match_parent"
     android:visibility="invisible" />
 
-  <LinearLayout
-    android:background="@color/primary"
+  <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_alignParentBottom="true">
+    android:layout_height="@dimen/edit_menu_height"
+    android:layout_alignParentBottom="true"
+    android:background="@color/accent">
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
+      style="@style/PixelText.Button"
       android:id="@+id/edit_fab_cancel"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@android:color/transparent"
-      android:text="Cancel"
-      android:textAlignment="center"
-      android:textSize="20sp" />
-
-    <Space
-      android:layout_width="0dp"
       android:layout_height="match_parent"
-      android:layout_weight="1" />
+      android:layout_alignParentStart="true"
+      android:text="@string/cancel_button_text" />
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
+      style="@style/PixelText.Button"
       android:id="@+id/edit_fab_clear"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@android:color/transparent"
-      android:text="Clear World"
-      android:textAlignment="center"
-      android:textSize="20sp" />
-
-    <Space
-      android:layout_width="0dp"
       android:layout_height="match_parent"
-      android:layout_weight="1" />
+      android:text="@string/clear_button_text"
+      android:layout_centerHorizontal="true" />
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
+      style="@style/PixelText.Button"
       android:id="@+id/edit_fab_accept"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@android:color/transparent"
-      android:text="Done"
-      android:textAlignment="center"
-      android:textSize="20sp" />
-  </LinearLayout>
+      android:layout_height="match_parent"
+      android:layout_alignParentEnd="true"
+      android:text="@string/done_button_text" />
+
+  </RelativeLayout>
 
 </com.juankysoriano.materiallife.ui.sketch.editor.EditorMenuView>
 

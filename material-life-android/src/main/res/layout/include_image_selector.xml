@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center">
+
+  <com.juankysoriano.materiallife.ui.sketch.PixelButton
+    style="@style/PixelText.Button"
+    android:id="@+id/from_camera"
+    android:layout_width="@dimen/image_select_size"
+    android:layout_height="@dimen/image_select_size"
+    android:text="@string/load_from_camera" />
+
+  <include
+    layout="@layout/separtor_with_text"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/image_select_size" />
+
+  <com.juankysoriano.materiallife.ui.sketch.PixelButton
+    style="@style/PixelText.Button"
+    android:id="@+id/from_gallery"
+    android:layout_width="@dimen/image_select_size"
+    android:layout_height="@dimen/image_select_size"
+    android:text="@string/load_from_gallery" />
+</LinearLayout>

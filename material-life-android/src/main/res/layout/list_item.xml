@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.juankysoriano.materiallife.ui.sketch.PixelTextView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
+  style="@style/PixelText"
   android:id="@+id/menu_item"
   android:layout_width="match_parent"
-  android:layout_height="50dp"
-  android:textIsSelectable="false"
-  android:textAlignment="center"
-  android:textColor="@android:color/black"
-  android:textSize="20sp"
+  android:layout_height="@dimen/menu_list_item_height"
   android:gravity="center"
   tools:text="test" />

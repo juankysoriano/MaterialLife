@@ -1,4 +1,11 @@
 <resources>
   <string name="app_name">Material Life</string>
   <string name="description">\"Material Game of Life\"</string>
+  <string name="cancel_button_text">Cancel</string>
+  <string name="clear_button_text">Clear World</string>
+  <string name="done_button_text">Done</string>
+  <string name="load_from">Load from:</string>
+  <string name="load_from_camera">Camera</string>
+  <string name="load_from_gallery">Gallery</string>
+  <string name="button_or_separator">or</string>
 </resources>
