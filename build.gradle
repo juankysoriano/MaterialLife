@@ -31,7 +31,7 @@ ext {
     androidDebugClassesFolder = "intermediates/classes/debug"
     javaTestClassesFolder = "classes/test"
 
-    MIN_SDK = 16
+    MIN_SDK = 17
     TARGET_SDK = 22
     COMPILE_SDK = 22
     BUILD_TOOLS = "22.0.1"

@@ -160,9 +160,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
 
     public void restoreLastWorld() {
         for (int i = 0; i < gameOfLife.getWidth(); i++) {
-            for (int j = 0; j < gameOfLife.getHeight(); j++) {
-                gameOfLife.getCells()[i][j] = cellsBackup[i][j];
-            }
+            System.arraycopy(cellsBackup[i], 0, gameOfLife.getCells()[i], 0, gameOfLife.getHeight());
         }
     }
 }
