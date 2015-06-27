@@ -105,6 +105,12 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         return this;
     }
 
+    @Override
+    public void abortEdition() {
+        worldEditor.cancel();
+        worldEditor.endEdition();
+    }
+
     private void detachListeners() {
         clearButton.setOnClickListener(null);
         cancelButton.setOnClickListener(null);

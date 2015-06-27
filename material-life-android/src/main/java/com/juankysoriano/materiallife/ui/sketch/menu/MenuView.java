@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.juankysoriano.materiallife.R;
@@ -52,14 +51,6 @@ public class MenuView extends RelativeLayout {
     public void closeMenu() {
         menuOpened = false;
         doConcealAnimation();
-    }
-
-    public void show() {
-        setVisibility(View.VISIBLE);
-    }
-
-    public void hide() {
-        setVisibility(View.GONE);
     }
 
     public boolean isMenuOpened() {

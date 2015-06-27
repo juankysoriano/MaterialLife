@@ -10,8 +10,7 @@
   <com.juankysoriano.materiallife.ui.sketch.reveal.RevealView
     android:id="@+id/reveal_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:visibility="invisible" />
+    android:layout_height="wrap_content" />
 
   <com.juankysoriano.materiallife.ui.sketch.menu.MenuOptionsView
     style="@style/MenuOptions"
@@ -20,8 +19,7 @@
     android:layout_height="wrap_content"
     android:scaleX="0"
     android:scaleY="0"
-    android:alpha="0"
-    android:visibility="invisible" />
+    android:visibility="invisible"/>
 
   <com.juankysoriano.materiallife.ui.sketch.menu.MenuButton
     style="@style/MaterialFAB"

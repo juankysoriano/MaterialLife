@@ -8,4 +8,6 @@ public interface WorldEditorMenu {
     void detachActionSelectedListener();
 
     WorldEditorMenuFragment getFragment();
+
+    void abortEdition();
 }

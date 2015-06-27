@@ -86,7 +86,7 @@ public class MenuOptionsView extends ListView {
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                setVisibility(View.VISIBLE);
+                show();
             }
         });
         return animatorSet;
@@ -99,6 +99,12 @@ public class MenuOptionsView extends ListView {
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(alphaAnimator, scaleXAnimator, scaleYAnimator);
+        animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                hide();
+            }
+        });
         return animatorSet;
     }
 
@@ -108,6 +114,19 @@ public class MenuOptionsView extends ListView {
         animator.setStartDelay(delay);
         animator.setInterpolator(ACCELERATE_INTERPOLATOR);
         return animator;
+    }
+
+    private void show() {
+        setVisibility(View.VISIBLE);
+    }
+
+    private void hide() {
+        getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setVisibility(View.GONE);
+            }
+        }, HIDE_DURATION);
     }
 
     public interface OnItemSelectedListener {
