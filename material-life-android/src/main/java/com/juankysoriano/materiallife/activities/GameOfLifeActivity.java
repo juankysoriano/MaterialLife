@@ -12,6 +12,7 @@ import com.juankysoriano.materiallife.editor.EditorAction;
 import com.juankysoriano.materiallife.editor.WorldEditorMenu;
 import com.juankysoriano.materiallife.imageloader.ImageLoader;
 import com.juankysoriano.materiallife.imageloader.ImageLoaderAction;
+import com.juankysoriano.materiallife.info.InfoActivity;
 import com.juankysoriano.materiallife.menu.MainMenu;
 import com.juankysoriano.materiallife.menu.MenuItem;
 import com.juankysoriano.materiallife.ui.sketch.editor.EditorMenuView;
@@ -69,6 +70,10 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
                     break;
                 case LOAD_WORLD:
                     addImageLoader();
+                    break;
+                case INFO:
+                    startActivity(new Intent(getApplicationContext(), InfoActivity.class));
+                    mainMenu.closeMenu();
                     break;
             }
         }
@@ -167,7 +172,10 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     public void onBackPressed() {
         if (hasMainMenu() && mainMenu.isOpened()) {
             mainMenu.closeMenu();
-        } else if (hasEditorMenu() || hasImageLoader()) {
+        } else if (hasEditorMenu()) {
+            editorMenu.abortEdition();
+            addMainMenu();
+        } else if (hasImageLoader()) {
             addMainMenu();
         } else {
             super.onBackPressed();
