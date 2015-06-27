@@ -2,6 +2,8 @@ package com.juankysoriano.materiallife.world.performer;
 
 import android.view.MotionEvent;
 
+import com.juankysoriano.materiallife.ContextRetriever;
+import com.juankysoriano.materiallife.R;
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
 import com.juankysoriano.rainbow.core.event.RainbowInputController;
 import com.juankysoriano.rainbow.core.graphics.RainbowImage;
@@ -10,9 +12,11 @@ import com.openca.bi.OnCellUpdatedCallback2D;
 import com.openca.bi.discrete.AutomataDiscrete2D;
 
 public class GameOfLife implements RainbowInputController.RainbowInteractionListener, OnCellUpdatedCallback2D, RainbowDrawer.PointDetectedListener {
+    private static final int ALIVE_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.alive);
+    private static final int DEAD_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.dead);
     private static final int SCALE_FACTOR = 10;
     private static final int ALPHA = 70;
-    public static final int ALIVE_CELL_THRESHOLD = 128;
+    private static final int ALIVE_CELL_THRESHOLD = 128;
     private static final int THREE = 3;
     private static final int ALIVE = 1;
     private static final int DEAD = 0;
@@ -37,7 +41,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
         rainbowDrawer.noStroke();
         rainbowDrawer.smooth();
         rainbowDrawer.vSync();
-        rainbowDrawer.fill(212, 1, 27);
+        rainbowDrawer.fill(ALIVE_COLOR);
     }
 
     private static AutomataDiscrete2D initAutomata(int width, int height) {
@@ -98,20 +102,20 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     private void paintBackground(float ALPHA) {
-        rainbowDrawer.background(35, 35, 50, ALPHA);
+        rainbowDrawer.background(DEAD_COLOR, ALPHA);
     }
 
     @Override
     public void onSketchTouched(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
-        onPointDetected(rainbowInputController.getPreviousSmoothX(),
-                rainbowInputController.getPreviousSmoothY(),
-                rainbowInputController.getSmoothX(),
-                rainbowInputController.getSmoothY(), rainbowDrawer);
+        onPointDetected(rainbowInputController.getPreviousX(),
+                rainbowInputController.getPreviousY(),
+                rainbowInputController.getX(),
+                rainbowInputController.getY(), rainbowDrawer);
     }
 
     @Override
     public void onSketchReleased(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
-
+        //no-op
     }
 
     @Override
@@ -183,8 +187,9 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
         int red = (int) rainbowDrawer.red(color);
         int green = (int) rainbowDrawer.green(color);
         int blue = (int) rainbowDrawer.blue(color);
+        int grey = (red + green + blue) / THREE;
 
-        return (red + green + blue) / THREE > ALIVE_CELL_THRESHOLD ? ALIVE : DEAD;
+        return grey < ALIVE_CELL_THRESHOLD ? DEAD : ALIVE;
     }
 
     public void fastClear() {
