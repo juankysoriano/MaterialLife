@@ -73,7 +73,6 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
                     break;
                 case INFO:
                     startActivity(new Intent(getApplicationContext(), InfoActivity.class));
-                    mainMenu.closeMenu();
                     break;
             }
         }

@@ -8,4 +8,19 @@
   <string name="load_from_camera">Camera</string>
   <string name="load_from_gallery">Gallery</string>
   <string name="button_or_separator">or</string>
+
+  <!-- INFO -->
+
+  <string name="game_of_life_description">The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.
+    \n\nIt is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input.</string>
+  <string name="what_is_the_game_of_life">What is the Game of Life?</string>
+  <string name="game_rules">Game Rules</string>
+  <string name="rules_explanation">1.\tAny live cell with fewer than two live neighbours dies, as if caused by under-population.
+    \n\n2.\tAny live cell with two or three live neighbours lives on to the next generation.
+    \n\n3.\tAny live cell with more than three live neighbours dies, as if by overcrowding.
+    \n\n4.\tAny dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+  </string>
+  <string name="remind">And remember!!</string>
+  <string name="believe_me">You have the power to create life on the tip of your fingers.
+    \n\nDon\'t you believe me? Try on the frame below.</string>
 </resources>

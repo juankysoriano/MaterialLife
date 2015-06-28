@@ -120,25 +120,28 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
 
     @Override
     public void onFingerDragged(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
-        int x = (int) rainbowInputController.getSmoothX();
-        int y = (int) rainbowInputController.getSmoothY();
-        int previousX = (int) rainbowInputController.getPreviousSmoothX();
-        int previousY = (int) rainbowInputController.getPreviousSmoothY();
+        int x = (int) rainbowInputController.getX();
+        int y = (int) rainbowInputController.getY();
+        int previousX = (int) rainbowInputController.getPreviousX();
+        int previousY = (int) rainbowInputController.getPreviousY();
 
         rainbowDrawer.exploreLine(previousX, previousY, x, y, RainbowDrawer.Precision.HIGH, this);
     }
 
     @Override
     public void onPointDetected(float px, float py, float x, float y, RainbowDrawer rainbowDrawer) {
-        if (x >= 0 && x < rainbowDrawer.getWidth()
-                && y > 0 && y < rainbowDrawer.getHeight()) {
-            gameOfLife.getCells()[((int) x / SCALE_FACTOR)][((int) y / SCALE_FACTOR)] = ALIVE;
+        int cellX = (int) (x / SCALE_FACTOR);
+        int cellY = (int) (y / SCALE_FACTOR);
+
+        if (cellX >= 0 && cellX < gameOfLife.getWidth()
+                && cellY >= 0 && cellY < gameOfLife.getHeight()) {
+            gameOfLife.getCells()[cellX][cellY] = ALIVE;
         }
     }
 
     @Override
     public void onMotionEvent(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
-
+        //no-op
     }
 
     public void startEdition() {

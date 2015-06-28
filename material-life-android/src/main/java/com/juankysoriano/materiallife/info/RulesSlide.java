@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import com.juankysoriano.materiallife.R;
 
-public class FirstSlide extends Fragment {
+public class RulesSlide extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.intro, container, false);
+        return inflater.inflate(R.layout.intro_rules, container, false);
     }
 }

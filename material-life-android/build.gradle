@@ -56,7 +56,7 @@ android {
     dependencies {
         compile project(':openca')
         compile project(':rainbow')
-        compile 'com.github.paolorotolo:appintro:2.0.0'
+        compile project(':intro')
         compile 'com.android.support:design:22.2.0'
         compile 'com.github.juankysoriano:CircularFloatingActionMenu:v0.6.0'
         compile 'com.google.android.gms:play-services-analytics:7.5.0'
