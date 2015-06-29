@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="primary">#D4011B</color>
-  <color name="primary_dark">#900009</color>
-  <color name="accent">#D4011B</color>
-  <color name="accent_translucent">#80FFEB3B</color>
-  <color name="accent_bright">#FFF493</color>
+  <color name="primary">#000000</color>
+  <color name="primary_dark">#000000</color>
+  <color name="accent">#4CAF50</color>
 
   <!-- CELLS -->
-  <color name="alive">#D4011B</color>
-  <color name="dead">#232332</color>
+  <color name="alive">#4CAF50</color>
+  <color name="dead">#000000</color>
+  <color name="accent_dark">#1B5E20</color>
 </resources>

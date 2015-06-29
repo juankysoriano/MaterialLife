@@ -2,14 +2,13 @@ package com.juankysoriano.materiallife.ui.sketch.reveal;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.animation.AccelerateInterpolator;
 
-import com.juankysoriano.materiallife.R;
 import com.juankysoriano.materiallife.ui.sketch.menu.NormalisedCenter;
 
 public class RevealDrawable extends Drawable {
@@ -24,15 +23,14 @@ public class RevealDrawable extends Drawable {
     private int radius;
     private NormalisedCenter normalisedCenter;
 
-    public static RevealDrawable newInstance(Context context) {
-        Paint clearPaint = generatePaint(context);
+    public static RevealDrawable newInstance() {
+        Paint clearPaint = generatePaint();
         return new RevealDrawable(clearPaint);
     }
 
-    private static Paint generatePaint(Context context) {
+    private static Paint generatePaint() {
         Paint clearPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        int color = context.getResources().getColor(R.color.primary);
-        clearPaint.setColor(color);
+        clearPaint.setColor(Color.WHITE);
         clearPaint.setStyle(Paint.Style.FILL);
         return clearPaint;
     }

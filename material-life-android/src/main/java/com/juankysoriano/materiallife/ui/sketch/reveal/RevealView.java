@@ -22,7 +22,7 @@ public class RevealView extends View {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        revealDrawable = RevealDrawable.newInstance(getContext());
+        revealDrawable = RevealDrawable.newInstance();
         setBackground(revealDrawable);
     }
 

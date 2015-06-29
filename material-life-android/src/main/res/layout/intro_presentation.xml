@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/main"
+  android:background="@android:color/white"
   android:orientation="vertical"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/dead"
-  android:id="@+id/main">
+  android:layout_height="match_parent">
 
   <com.juankysoriano.materiallife.ui.sketch.PixelTextView
     style="@style/PixelText.Description.Title"
@@ -14,11 +14,12 @@
     android:text="@string/what_is_the_game_of_life" />
 
   <FrameLayout
-    android:background="@color/accent"
+    android:background="@color/accent_dark"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    android:padding="5dp">
+    android:padding="@dimen/frame_border_size"
+    android:layout_margin="@dimen/presentation_world_margin">
 
     <FrameLayout
       android:id="@+id/life_presentation_world"

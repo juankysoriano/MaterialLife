@@ -16,7 +16,7 @@
     android:layout_height="@dimen/edit_menu_height"
     android:layout_alignParentBottom="true"
     android:orientation="horizontal"
-    android:background="@color/accent">
+    android:background="@android:color/white">
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
       style="@style/PixelText.Button"
