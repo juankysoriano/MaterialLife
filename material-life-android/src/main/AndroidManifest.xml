@@ -16,10 +16,9 @@
     android:label="@string/app_name"
     android:theme="@style/MaterialLifeTheme"
     android:hardwareAccelerated="true">
+
     <activity
-      android:name=".activities.GameOfLifeActivity"
-      android:label="@string/app_name"
-      android:launchMode="singleTask"
+      android:name=".info.InfoActivity"
       android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -28,8 +27,12 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".info.InfoActivity"
-      android:screenOrientation="portrait"/>
+    <activity
+      android:name=".activities.GameOfLifeActivity"
+      android:label="@string/app_name"
+      android:launchMode="singleTask"
+      android:screenOrientation="portrait" />
+
 
   </application>
 </manifest>

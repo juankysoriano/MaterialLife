@@ -13,6 +13,7 @@ import com.juankysoriano.materiallife.editor.WorldEditorMenu;
 import com.juankysoriano.materiallife.imageloader.ImageLoader;
 import com.juankysoriano.materiallife.imageloader.ImageLoaderAction;
 import com.juankysoriano.materiallife.info.InfoActivity;
+import com.juankysoriano.materiallife.info.preferences.InfoPreferences;
 import com.juankysoriano.materiallife.menu.MainMenu;
 import com.juankysoriano.materiallife.menu.MenuItem;
 import com.juankysoriano.materiallife.ui.sketch.editor.EditorMenuView;
@@ -72,7 +73,9 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
                     addImageLoader();
                     break;
                 case INFO:
-                    startActivity(new Intent(getApplicationContext(), InfoActivity.class));
+                    Intent launchIntent = new Intent(getApplicationContext(), InfoActivity.class);
+                    launchIntent.putExtra(InfoPreferences.FROM_MENU, true);
+                    startActivity(launchIntent);
                     break;
             }
         }

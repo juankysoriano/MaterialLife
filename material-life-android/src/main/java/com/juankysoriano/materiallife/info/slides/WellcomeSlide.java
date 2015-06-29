@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.info;
+package com.juankysoriano.materiallife.info.slides;
 
 import com.juankysoriano.materiallife.R;
 

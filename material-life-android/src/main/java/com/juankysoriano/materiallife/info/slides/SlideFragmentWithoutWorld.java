@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.info;
+package com.juankysoriano.materiallife.info.slides;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
