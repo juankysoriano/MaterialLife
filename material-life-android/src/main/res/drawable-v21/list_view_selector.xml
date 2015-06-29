@@ -4,7 +4,7 @@
 
   <item
     android:id="@android:id/mask"
-    android:drawable="@android:color/white" />
+    android:drawable="@color/primary_bright" />
 
   <item>
     <selector>
@@ -13,7 +13,7 @@
       <item
         android:state_checked="true"
         android:drawable="@drawable/mesh_repeat" />
-      <item android:drawable="@android:color/white"/>
+      <item android:drawable="@color/primary_bright"/>
     </selector>
   </item>
 </ripple>

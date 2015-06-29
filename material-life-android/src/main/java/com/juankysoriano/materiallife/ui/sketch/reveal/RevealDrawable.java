@@ -3,12 +3,13 @@ package com.juankysoriano.materiallife.ui.sketch.reveal;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.animation.AccelerateInterpolator;
 
+import com.juankysoriano.materiallife.ContextRetriever;
+import com.juankysoriano.materiallife.R;
 import com.juankysoriano.materiallife.ui.sketch.menu.NormalisedCenter;
 
 public class RevealDrawable extends Drawable {
@@ -16,6 +17,7 @@ public class RevealDrawable extends Drawable {
     private static final String RADIUS = "radius";
     private static final int REVEAL_DURATION = 300;
     private static final int HIDE_DURATION = 500;
+    private static final int REVEAL_COLOR = ContextRetriever.INSTANCE.getResources().getColor(R.color.primary_bright);
     private static final AccelerateInterpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private final Paint clearPaint;
     private int targetRadius;
@@ -30,7 +32,7 @@ public class RevealDrawable extends Drawable {
 
     private static Paint generatePaint() {
         Paint clearPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        clearPaint.setColor(Color.WHITE);
+        clearPaint.setColor(REVEAL_COLOR);
         clearPaint.setStyle(Paint.Style.FILL);
         return clearPaint;
     }
