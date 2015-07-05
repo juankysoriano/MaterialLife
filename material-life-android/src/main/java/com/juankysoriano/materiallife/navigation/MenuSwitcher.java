@@ -1,7 +1,9 @@
-package com.juankysoriano.materiallife.navigaton;
+package com.juankysoriano.materiallife.navigation;
 
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.app.FragmentManager;
 
+import com.juankysoriano.materiallife.ContextRetriever;
 import com.juankysoriano.materiallife.R;
 import com.juankysoriano.materiallife.editor.WorldEditorMenu;
 import com.juankysoriano.materiallife.editor.WorldEditorMenuFragment;
@@ -15,7 +17,12 @@ public class MenuSwitcher {
 
     private final FragmentManager fragmentManager;
 
-    public MenuSwitcher(FragmentManager fragmentManager) {
+    public static MenuSwitcher newInstance() {
+        return new MenuSwitcher(ContextRetriever.INSTANCE.getActivity().getSupportFragmentManager());
+    }
+
+    @VisibleForTesting
+    protected MenuSwitcher(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
     }
 
