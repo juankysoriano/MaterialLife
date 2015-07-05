@@ -18,4 +18,4 @@
 
 -dontwarn com.squareup.picasso.**
 -dontwarn com.squareup.okhttp.**
--keepattributes SourceFile,LineNumberTable
+-dontwarn io.codetail.animation.**

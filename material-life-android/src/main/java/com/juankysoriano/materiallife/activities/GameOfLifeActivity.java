@@ -69,7 +69,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
         }
     }
 
-    private MenuOptionsView.OnItemSelectedListener onMenuItemSelectedListener = new MenuOptionsView.OnItemSelectedListener() {
+    private final MenuOptionsView.OnItemSelectedListener onMenuItemSelectedListener = new MenuOptionsView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(MenuItem item) {
             switch (item) {
@@ -84,11 +84,12 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
                     launchIntent.putExtra(InfoPreferences.FROM_MENU, true);
                     startActivity(launchIntent);
                     break;
+                default: //no-op
             }
         }
     };
 
-    private EditorMenuView.OnActionSelectedListener onActionSelectedListener = new EditorMenuView.OnActionSelectedListener() {
+    private final EditorMenuView.OnActionSelectedListener onActionSelectedListener = new EditorMenuView.OnActionSelectedListener() {
         @Override
         public void onActionPerformed(EditorAction action) {
             switch (action) {
@@ -96,11 +97,12 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
                 case CANCEL:
                     addMainMenu();
                     break;
+                default: //no-op
             }
         }
     };
 
-    private ImageLoader.OnLoadImageSelectedListener onLoadImageSelectedListener = new ImageLoader.OnLoadImageSelectedListener() {
+    private final ImageLoader.OnLoadImageSelectedListener onLoadImageSelectedListener = new ImageLoader.OnLoadImageSelectedListener() {
         @Override
         public void onLoadImage(ImageLoaderAction action) {
             switch (action) {
@@ -110,6 +112,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
                 case GALLERY:
                     pictureRetriever.openGalleryForResult();
                     break;
+                default: //no-op
             }
         }
     };
@@ -117,7 +120,6 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        ImageLoaderResult imageLoaderResult = ImageLoaderResult.from(requestCode);
 
         if (resultCode != RESULT_OK) {
             imageLoader.abortPictureLoading();
@@ -125,6 +127,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
             return;
         }
 
+        ImageLoaderResult imageLoaderResult = ImageLoaderResult.from(requestCode);
         switch (imageLoaderResult) {
             case CAMERA:
                 imageLoader.loadWorldFrom(pictureRetriever.getLastLoadedImagePath());
@@ -134,6 +137,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
                 imageLoader.loadWorldFrom(data.getData());
                 addEditorMenu();
                 break;
+            default: //no-op
         }
     }
 

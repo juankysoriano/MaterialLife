@@ -5,7 +5,7 @@ public enum MenuItem {
     LOAD_WORLD("Load World"),
     INFO("Info");
 
-    String value;
+    private final String value;
 
     MenuItem(String value) {
         this.value = value;

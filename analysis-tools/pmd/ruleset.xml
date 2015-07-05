@@ -47,8 +47,5 @@
   <rule ref="rulesets/java/finalizers.xml" />
   <rule ref="rulesets/java/logging-jakarta-commons.xml" />
   <rule ref="rulesets/java/clone.xml" />
-  <rule ref="rulesets/java/android.xml">
-    <exclude name="ProtectLogD" />
-    <exclude name="ProtectLogV" />
-  </rule>
+  <rule ref="rulesets/java/android.xml"/>
 </ruleset>

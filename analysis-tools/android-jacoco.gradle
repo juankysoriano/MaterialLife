@@ -22,8 +22,7 @@ task jacocoReport(type: JacocoReport, dependsOn: "testDebug") {
     classDirectories = fileTree(
             dir: 'build/intermediates/classes/debug',
             excludes: ['**/R.class',
-                       '**/R$*.class',
-                       '**/FloatingActionButton.class'
+                       '**/R$*.class'
             ])
     sourceDirectories = files(coverageSourceDirs)
     executionData = files('build/jacoco/testDebug.exec')

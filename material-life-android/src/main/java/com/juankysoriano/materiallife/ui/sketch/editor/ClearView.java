@@ -56,7 +56,7 @@ public class ClearView extends View {
                 .start();
     }
 
-    private AnimatorListenerAdapter hideAnimationListener = new AnimatorListenerAdapter() {
+    private final AnimatorListenerAdapter hideAnimationListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
             setVisibility(View.INVISIBLE);

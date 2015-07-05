@@ -1,6 +1,7 @@
 package com.juankysoriano.materiallife.ui.sketch.menu;
 
 import android.content.Context;
+import android.support.annotation.VisibleForTesting;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,8 @@ public class MenuItemAdapter extends BaseAdapter {
         return new MenuItemAdapter(ContextRetriever.INSTANCE.getApplicationContext());
     }
 
-    private MenuItemAdapter(Context context) {
+    @VisibleForTesting
+    protected MenuItemAdapter(Context context) {
         this.context = context;
     }
 

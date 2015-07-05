@@ -6,7 +6,11 @@ import android.view.View;
 /**
  * This view measurer asumes that the view has been already inflated and displayed
  */
-public abstract class ViewMeasurer {
+public class ViewMeasurer {
+
+    private ViewMeasurer() {
+        //no-op
+    }
 
     public static Point getViewCenter(View view) {
         int centerX = view.getLeft() + view.getWidth() / 2;
@@ -25,20 +29,10 @@ public abstract class ViewMeasurer {
 
         return new Point(centerX, centerY);
     }
-
-    public static int getRadiusFor(View view) {
-        return (int) Math.sqrt(Math.pow(view.getWidth() / 2, 2) + Math.pow(view.getHeight() / 2, 2));
-    }
-
     public static int getRadiusFrom(Point point, View view) {
-        int hypotenuseX = Math.max(point.x, view.getWidth() - point.x);
-        int hypotenuseY = Math.max(point.y, view.getHeight() - point.y);
+        int hypotenuseA = Math.max(point.x, view.getWidth() - point.x);
+        int hypotenuseB = Math.max(point.y, view.getHeight() - point.y);
 
-        return (int) Math.sqrt(Math.pow(hypotenuseX, 2) + Math.pow(hypotenuseY, 2));
+        return (int) Math.sqrt(Math.pow(hypotenuseA, 2) + Math.pow(hypotenuseB, 2));
     }
-
-    private static View parent(View view) {
-        return (View) view.getParent();
-    }
-
 }

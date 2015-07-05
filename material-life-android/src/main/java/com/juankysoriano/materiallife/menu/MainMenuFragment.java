@@ -42,14 +42,14 @@ public class MainMenuFragment extends Fragment implements MainMenu {
         menuOptionsView.setOnMenuItemSelectedListener(onItemSelectedListener);
     }
 
-    private View.OnClickListener onMenuButtonClickListener = new View.OnClickListener() {
+    private final View.OnClickListener onMenuButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             menuView.openMenu();
         }
     };
 
-    private MenuOptionsView.OnItemSelectedListener onItemSelectedListener = new MenuOptionsView.OnItemSelectedListener() {
+    private final MenuOptionsView.OnItemSelectedListener onItemSelectedListener = new MenuOptionsView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(MenuItem item) {
             if (hasAttachedItemSelectedListener()) {

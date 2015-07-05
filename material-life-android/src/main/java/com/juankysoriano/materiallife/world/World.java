@@ -16,7 +16,9 @@ public class World extends Rainbow implements RainbowImage.LoadPictureListener {
     private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
 
     @VisibleForTesting
+    //CHECKSTYLE IGNORE VisibilityModifier
     protected GameOfLife gameOfLife;
+    //CHECKSTYLE END IGNORE
 
     public static World newInstance() {
         RainbowDrawer rainbowDrawer = new RainbowDrawer();

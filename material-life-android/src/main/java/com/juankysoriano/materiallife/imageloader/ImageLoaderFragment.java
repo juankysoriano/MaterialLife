@@ -42,7 +42,7 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
         galleryButton.setOnClickListener(onGalleryClickListener);
     }
 
-    PixelButton.OnClickListener onCameraClickListener = new View.OnClickListener() {
+    private final PixelButton.OnClickListener onCameraClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (hasLoadImageListener()) {
@@ -52,7 +52,7 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
         }
     };
 
-    PixelButton.OnClickListener onGalleryClickListener = new View.OnClickListener() {
+    private final PixelButton.OnClickListener onGalleryClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (hasLoadImageListener()) {

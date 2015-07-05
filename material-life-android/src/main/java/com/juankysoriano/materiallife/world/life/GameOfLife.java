@@ -15,7 +15,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     public static final int ALIVE = 1;
     public static final int DEAD = 0;
     private static final int CELL_SIZE = ContextRetriever.INSTANCE.getResources().getInteger(R.integer.cell_size);
-    private final AutomataDiscrete2D gameOfLife;
+    private final AutomataDiscrete2D gameOfLifeAutomata;
     private final RainbowInputController rainbowInputController;
     private final GameOfLifeDrawer gameOfLifeDrawer;
     private boolean editing;
@@ -35,8 +35,8 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     @VisibleForTesting
-    protected GameOfLife(AutomataDiscrete2D gameOfLife, GameOfLifeDrawer gameOfLifeDrawer, RainbowInputController rainbowInputController) {
-        this.gameOfLife = gameOfLife;
+    protected GameOfLife(AutomataDiscrete2D gameOfLifeAutomata, GameOfLifeDrawer gameOfLifeDrawer, RainbowInputController rainbowInputController) {
+        this.gameOfLifeAutomata = gameOfLifeAutomata;
         this.gameOfLifeDrawer = gameOfLifeDrawer;
         this.rainbowInputController = rainbowInputController;
     }
@@ -51,15 +51,15 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     private void paintCellsWithoutEvolution() {
-        for (int i = 0; i < gameOfLife.getWidth(); i++) {
-            for (int j = 0; j < gameOfLife.getHeight(); j++) {
-                paintCellWithStateAt(i, j, gameOfLife.getCells()[i][j]);
+        for (int i = 0; i < gameOfLifeAutomata.getWidth(); i++) {
+            for (int j = 0; j < gameOfLifeAutomata.getHeight(); j++) {
+                paintCellWithStateAt(i, j, gameOfLifeAutomata.getCells()[i][j]);
             }
         }
     }
 
     private void paintCellsAndEvolve() {
-        gameOfLife.evolve(this);
+        gameOfLifeAutomata.evolve(this);
     }
 
     @Override
@@ -105,9 +105,9 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
         int cellX = (int) (x / CELL_SIZE);
         int cellY = (int) (y / CELL_SIZE);
 
-        if (cellX >= 0 && cellX < gameOfLife.getWidth()
-                && cellY >= 0 && cellY < gameOfLife.getHeight()) {
-            gameOfLife.getCells()[cellX][cellY] = ALIVE;
+        if (cellX >= 0 && cellX < gameOfLifeAutomata.getWidth()
+                && cellY >= 0 && cellY < gameOfLifeAutomata.getHeight()) {
+            gameOfLifeAutomata.getCells()[cellX][cellY] = ALIVE;
         }
     }
 
@@ -129,9 +129,9 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     private void doCellsBackup() {
-        cellsBackup = new int[gameOfLife.getWidth()][];
-        for (int i = 0; i < gameOfLife.getWidth(); i++) {
-            int[] row = gameOfLife.getCells()[i];
+        cellsBackup = new int[gameOfLifeAutomata.getWidth()][];
+        for (int i = 0; i < gameOfLifeAutomata.getWidth(); i++) {
+            int[] row = gameOfLifeAutomata.getCells()[i];
             cellsBackup[i] = new int[row.length];
             System.arraycopy(row, 0, cellsBackup[i], 0, row.length);
         }
@@ -143,19 +143,19 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
 
     public void clear() {
         gameOfLifeDrawer.clearBackground();
-        gameOfLife.clear();
+        gameOfLifeAutomata.clear();
     }
 
     public void restoreLastWorld() {
-        for (int i = 0; i < gameOfLife.getWidth(); i++) {
-            System.arraycopy(cellsBackup[i], 0, gameOfLife.getCells()[i], 0, gameOfLife.getHeight());
+        for (int i = 0; i < gameOfLifeAutomata.getWidth(); i++) {
+            System.arraycopy(cellsBackup[i], 0, gameOfLifeAutomata.getCells()[i], 0, gameOfLifeAutomata.getHeight());
         }
     }
 
     public void loadWorldFrom(RainbowImage image) {
-        for (int i = 0; i < gameOfLife.getWidth(); i++) {
-            for (int j = 0; j < gameOfLife.getHeight(); j++) {
-                gameOfLife.getCells()[i][j] = gameOfLifeDrawer.getCellStateFrom(image, i, j);
+        for (int i = 0; i < gameOfLifeAutomata.getWidth(); i++) {
+            for (int j = 0; j < gameOfLifeAutomata.getHeight(); j++) {
+                gameOfLifeAutomata.getCells()[i][j] = gameOfLifeDrawer.getCellStateFrom(image, i, j);
             }
         }
     }

@@ -37,14 +37,14 @@ public class MenuButton extends FloatingActionButton {
         animator.start();
     }
 
-    private AnimatorListenerAdapter animationHideListener = new AnimatorListenerAdapter() {
+    private final AnimatorListenerAdapter animationHideListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
             setVisibility(View.INVISIBLE);
         }
     };
 
-    private AnimatorListenerAdapter animationShowListener = new AnimatorListenerAdapter() {
+    private final AnimatorListenerAdapter animationShowListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationStart(Animator animation) {
             setVisibility(View.VISIBLE);

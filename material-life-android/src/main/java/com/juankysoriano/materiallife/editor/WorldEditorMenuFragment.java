@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.juankysoriano.materiallife.R;
-import com.juankysoriano.materiallife.WorldRetriever;
 import com.juankysoriano.materiallife.ui.sketch.PixelButton;
 import com.juankysoriano.materiallife.ui.sketch.editor.EditorMenuView;
 import com.novoda.notils.caster.Views;
@@ -48,14 +47,14 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         doneButton.setOnClickListener(onDoneClickListener);
     }
 
-    private PixelButton.OnClickListener onClearClickListener = new View.OnClickListener() {
+    private final PixelButton.OnClickListener onClearClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             editorMenuView.animateClear(clearAnimationListener);
         }
     };
 
-    private PixelButton.OnClickListener onCancelClickListener = new View.OnClickListener() {
+    private final PixelButton.OnClickListener onCancelClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             worldEditor.cancel();
@@ -66,7 +65,7 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         }
     };
 
-    private PixelButton.OnClickListener onDoneClickListener = new View.OnClickListener() {
+    private final PixelButton.OnClickListener onDoneClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             worldEditor.endEdition();
@@ -76,7 +75,7 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         }
     };
 
-    private EditorMenuView.ClearAnimationListener clearAnimationListener = new EditorMenuView.ClearAnimationListener() {
+    private final EditorMenuView.ClearAnimationListener clearAnimationListener = new EditorMenuView.ClearAnimationListener() {
         @Override
         public void onClearDone() {
             worldEditor.clear();

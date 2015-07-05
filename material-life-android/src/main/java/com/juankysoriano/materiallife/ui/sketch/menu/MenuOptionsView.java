@@ -46,7 +46,7 @@ public class MenuOptionsView extends ListView {
         return onMenuOnItemSelectedListener != null;
     }
 
-    private AdapterView.OnItemClickListener onItemSelectedListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener onItemSelectedListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             setSelection(position);
@@ -65,14 +65,14 @@ public class MenuOptionsView extends ListView {
         viewRevealer.concealFrom(point, this, concealAnimationListener);
     }
 
-    private AnimatorListenerAdapter revealAnimationListener = new AnimatorListenerAdapter() {
+    private final AnimatorListenerAdapter revealAnimationListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationStart(Animator animation) {
             show();
         }
     };
 
-    private AnimatorListenerAdapter concealAnimationListener = new AnimatorListenerAdapter() {
+    private final AnimatorListenerAdapter concealAnimationListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
             hide();
