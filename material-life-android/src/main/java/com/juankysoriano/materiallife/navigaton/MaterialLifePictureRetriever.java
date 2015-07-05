@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.activities.navigator;
+package com.juankysoriano.materiallife.navigaton;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,7 +6,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 import com.juankysoriano.materiallife.ContextRetriever;
-import com.juankysoriano.materiallife.activities.ImageLoaderResult;
+import com.juankysoriano.materiallife.imageloader.ImageLoaderResult;
 import com.novoda.notils.logger.simple.Log;
 
 import java.io.File;

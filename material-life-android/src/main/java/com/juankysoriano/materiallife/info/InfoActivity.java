@@ -1,10 +1,8 @@
 package com.juankysoriano.materiallife.info;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.paolorotolo.appintro.AppIntro2;
-import com.juankysoriano.materiallife.activities.GameOfLifeActivity;
 import com.juankysoriano.materiallife.info.preferences.InfoPreferences;
 import com.juankysoriano.materiallife.info.slides.LifeCreationSlide;
 import com.juankysoriano.materiallife.info.slides.PresentationSlide;
@@ -22,16 +20,11 @@ public class InfoActivity extends AppIntro2 {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        if (infoPreferences.shouldShowInfo(getIntent())) {
-            addSlide(new WellcomeSlide(), getApplicationContext());
-            addSlide(new PresentationSlide(), getApplicationContext());
-            addSlide(new RulesSlide(), getApplicationContext());
-            addSlide(new LifeCreationSlide(), getApplicationContext());
-            setOffScreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
-        } else {
-            done();
-        }
-
+        addSlide(new WellcomeSlide(), getApplicationContext());
+        addSlide(new PresentationSlide(), getApplicationContext());
+        addSlide(new RulesSlide(), getApplicationContext());
+        addSlide(new LifeCreationSlide(), getApplicationContext());
+        setOffScreenPageLimit(OFF_SCREEN_PAGE_LIMIT);
     }
 
     @Override
@@ -42,6 +35,5 @@ public class InfoActivity extends AppIntro2 {
     private void done() {
         infoPreferences.markInfoAsSeen();
         finish();
-        startActivity(new Intent(getApplicationContext(), GameOfLifeActivity.class));
     }
 }

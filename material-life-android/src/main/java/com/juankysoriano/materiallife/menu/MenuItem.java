@@ -14,8 +14,4 @@ public enum MenuItem {
     public String value() {
         return value;
     }
-
-    public MenuItem getFrom(int value) {
-        return value < values().length ? values()[value] : EDIT_WORLD;
-    }
 }

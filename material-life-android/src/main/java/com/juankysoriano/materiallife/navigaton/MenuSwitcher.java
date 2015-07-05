@@ -1,7 +1,8 @@
-package com.juankysoriano.materiallife;
+package com.juankysoriano.materiallife.navigaton;
 
 import android.support.v4.app.FragmentManager;
 
+import com.juankysoriano.materiallife.R;
 import com.juankysoriano.materiallife.editor.WorldEditorMenu;
 import com.juankysoriano.materiallife.editor.WorldEditorMenuFragment;
 import com.juankysoriano.materiallife.imageloader.ImageLoader;
@@ -10,11 +11,11 @@ import com.juankysoriano.materiallife.menu.MainMenu;
 import com.juankysoriano.materiallife.menu.MainMenuFragment;
 import com.novoda.notils.caster.Classes;
 
-public class MaterialLifeMenuSwitcher {
+public class MenuSwitcher {
 
     private final FragmentManager fragmentManager;
 
-    public MaterialLifeMenuSwitcher(FragmentManager fragmentManager) {
+    public MenuSwitcher(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
     }
 

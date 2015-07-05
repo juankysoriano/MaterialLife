@@ -48,14 +48,14 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         doneButton.setOnClickListener(onDoneClickListener);
     }
 
-    PixelButton.OnClickListener onClearClickListener = new View.OnClickListener() {
+    private PixelButton.OnClickListener onClearClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             editorMenuView.animateClear(clearAnimationListener);
         }
     };
 
-    PixelButton.OnClickListener onCancelClickListener = new View.OnClickListener() {
+    private PixelButton.OnClickListener onCancelClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             worldEditor.cancel();
@@ -66,7 +66,7 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         }
     };
 
-    PixelButton.OnClickListener onDoneClickListener = new View.OnClickListener() {
+    private PixelButton.OnClickListener onDoneClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             worldEditor.endEdition();
@@ -76,7 +76,7 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         }
     };
 
-    EditorMenuView.ClearAnimationListener clearAnimationListener = new EditorMenuView.ClearAnimationListener() {
+    private EditorMenuView.ClearAnimationListener clearAnimationListener = new EditorMenuView.ClearAnimationListener() {
         @Override
         public void onClearDone() {
             worldEditor.clear();
@@ -108,7 +108,6 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
     @Override
     public void abortEdition() {
         worldEditor.cancel();
-        worldEditor.endEdition();
     }
 
     private void detachListeners() {

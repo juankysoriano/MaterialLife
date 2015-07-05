@@ -4,14 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
-import com.juankysoriano.materiallife.MaterialLifeMenuSwitcher;
+import com.juankysoriano.materiallife.navigaton.MenuSwitcher;
 import com.juankysoriano.materiallife.R;
 import com.juankysoriano.materiallife.WorldRetriever;
-import com.juankysoriano.materiallife.activities.navigator.MaterialLifePictureRetriever;
+import com.juankysoriano.materiallife.navigaton.MaterialLifePictureRetriever;
 import com.juankysoriano.materiallife.editor.EditorAction;
 import com.juankysoriano.materiallife.editor.WorldEditorMenu;
 import com.juankysoriano.materiallife.imageloader.ImageLoader;
 import com.juankysoriano.materiallife.imageloader.ImageLoaderAction;
+import com.juankysoriano.materiallife.imageloader.ImageLoaderResult;
 import com.juankysoriano.materiallife.info.InfoActivity;
 import com.juankysoriano.materiallife.info.preferences.InfoPreferences;
 import com.juankysoriano.materiallife.menu.MainMenu;
@@ -23,25 +24,27 @@ import com.juankysoriano.materiallife.world.World;
 public class GameOfLifeActivity extends MaterialLifeActivity {
 
     private final World world;
-    private MaterialLifeMenuSwitcher materialLifeMenuSwitcher;
+    private final InfoPreferences infoPreferences;
+    private MenuSwitcher menuSwitcher;
     private MaterialLifePictureRetriever materialLifePictureRetriever;
     private MainMenu mainMenu;
     private WorldEditorMenu editorMenu;
     private ImageLoader imageLoader;
 
     public GameOfLifeActivity() {
-        this(World.newInstance());
+        this(World.newInstance(), InfoPreferences.newInstance());
     }
 
-    public GameOfLifeActivity(World world) {
+    public GameOfLifeActivity(World world, InfoPreferences infoPreferences) {
         WorldRetriever.INSTANCE.inject(world);
         this.world = world;
+        this.infoPreferences = infoPreferences;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        materialLifeMenuSwitcher = new MaterialLifeMenuSwitcher(getSupportFragmentManager());
+        menuSwitcher = new MenuSwitcher(getSupportFragmentManager());
         materialLifePictureRetriever = new MaterialLifePictureRetriever();
 
         setContentView(R.layout.world);
@@ -60,6 +63,10 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     protected void onResume() {
         super.onResume();
         world.resume();
+        if (infoPreferences.shouldShowInfo()) {
+            Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
+            startActivity(intent);
+        }
     }
 
     private MenuOptionsView.OnItemSelectedListener onMenuItemSelectedListener = new MenuOptionsView.OnItemSelectedListener() {
@@ -131,7 +138,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     }
 
     private void addMainMenu() {
-        mainMenu = materialLifeMenuSwitcher.addMainMenu();
+        mainMenu = menuSwitcher.addMainMenu();
         mainMenu.attachItemSelectedListener(onMenuItemSelectedListener);
         removeEditorMenu();
         removeImageLoader();
@@ -145,7 +152,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     }
 
     private void addImageLoader() {
-        imageLoader = materialLifeMenuSwitcher.addImageLoader();
+        imageLoader = menuSwitcher.addImageLoader();
         imageLoader.attachLoadImageListener(onLoadImageSelectedListener);
         removeMainMenu();
     }
@@ -158,7 +165,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     }
 
     private void addEditorMenu() {
-        editorMenu = materialLifeMenuSwitcher.addEditorMenu();
+        editorMenu = menuSwitcher.addEditorMenu();
         editorMenu.attachActionSelectedListener(onActionSelectedListener);
         removeMainMenu();
     }

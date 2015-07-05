@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.world.performer;
+package com.juankysoriano.materiallife.world.life;
 
 import android.view.MotionEvent;
 
@@ -7,66 +7,40 @@ import com.juankysoriano.materiallife.R;
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
 import com.juankysoriano.rainbow.core.event.RainbowInputController;
 import com.juankysoriano.rainbow.core.graphics.RainbowImage;
-import com.openca.Automata;
 import com.openca.bi.OnCellUpdatedCallback2D;
 import com.openca.bi.discrete.AutomataDiscrete2D;
 
 public class GameOfLife implements RainbowInputController.RainbowInteractionListener, OnCellUpdatedCallback2D, RainbowDrawer.PointDetectedListener {
-    private static final int ALIVE_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.alive);
-    private static final int DEAD_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.dead);
-    private static final int SCALE_FACTOR = 10;
-    private static final int ALPHA = 70;
-    private static final int ALIVE_CELL_THRESHOLD = 128;
-    private static final int THREE = 3;
-    private static final int ALIVE = 1;
-    private static final int DEAD = 0;
-    private static final float OPAQUE = 255;
+    public static final int ALIVE = 1;
+    public static final int DEAD = 0;
+    private static final int CELL_SIZE = ContextRetriever.INSTANCE.getResources().getInteger(R.integer.cell_size);
     private final AutomataDiscrete2D gameOfLife;
-    private final RainbowDrawer rainbowDrawer;
     private final RainbowInputController rainbowInputController;
+    private final GameOfLifeDrawer gameOfLifeDrawer;
     private boolean editing;
     private int[][] cellsBackup;
 
-    public static GameOfLife newInstance(RainbowDrawer rainbowDrawer, RainbowInputController rainbowInputController) {
-        AutomataDiscrete2D automata = initAutomata(rainbowDrawer.getWidth() / SCALE_FACTOR, rainbowDrawer.getHeight() / SCALE_FACTOR);
-        GameOfLife gameOfLife = new GameOfLife(automata, rainbowDrawer, rainbowInputController);
+    public static GameOfLife newInstance(RainbowDrawer rainbowDrawer,
+                                         RainbowInputController rainbowInputController) {
+        int width = rainbowDrawer.getWidth() / CELL_SIZE;
+        int height = rainbowDrawer.getHeight() / CELL_SIZE;
+        GameOfLifeCreator gameOfLifeCreator = GameOfLifeCreator.newInstance();
+        AutomataDiscrete2D automata = gameOfLifeCreator.createGameOfLife(width, height);
+        GameOfLifeDrawer gameOfLifeDrawer = GameOfLifeDrawer.newInstance(rainbowDrawer);
+        GameOfLife gameOfLife = new GameOfLife(automata, gameOfLifeDrawer, rainbowInputController);
         rainbowInputController.setRainbowInteractionListener(gameOfLife);
 
-        configure(rainbowDrawer);
-
-        return new GameOfLife(automata, rainbowDrawer, rainbowInputController);
+        return gameOfLife;
     }
 
-    private static void configure(RainbowDrawer rainbowDrawer) {
-        rainbowDrawer.noStroke();
-        rainbowDrawer.smooth();
-        rainbowDrawer.vSync();
-        rainbowDrawer.fill(ALIVE_COLOR);
-    }
-
-    private static AutomataDiscrete2D initAutomata(int width, int height) {
-        Automata.Builder builder = new Automata.Builder();
-        AutomataDiscrete2D automata = builder.width(width)
-                .height(height)
-                .radius(1)
-                .states(2)
-                .rule("8-24")
-                .type(Automata.Type.OUTER_TOTALISTIC)
-                .domain(Automata.Domain.DISCRETE)
-                .dimension(Automata.Dimension.BIDIMENSIONAL)
-                .build();
-        automata.randomiseConfiguration();
-        return automata;
-    }
-
-    protected GameOfLife(AutomataDiscrete2D gameOfLife, RainbowDrawer rainbowDrawer, RainbowInputController rainbowInputController) {
+    protected GameOfLife(AutomataDiscrete2D gameOfLife, GameOfLifeDrawer gameOfLifeDrawer, RainbowInputController rainbowInputController) {
         this.gameOfLife = gameOfLife;
-        this.rainbowDrawer = rainbowDrawer;
+        this.gameOfLifeDrawer = gameOfLifeDrawer;
         this.rainbowInputController = rainbowInputController;
     }
 
     public void doStep() {
-        paintBackground(ALPHA);
+        gameOfLifeDrawer.paintBackground();
         if (editing) {
             paintCellsWithoutEvolution();
         } else {
@@ -89,20 +63,12 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     @Override
     public void onCellDetected(int x, int y, int state) {
         if (isCellAlive(state)) {
-            paintCellAt(x, y);
+            gameOfLifeDrawer.paintCellAt(x, y);
         }
     }
 
     private boolean isCellAlive(int state) {
         return state == ALIVE;
-    }
-
-    private void paintCellAt(int x, int y) {
-        rainbowDrawer.rect(x * SCALE_FACTOR, y * SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR);
-    }
-
-    private void paintBackground(float ALPHA) {
-        rainbowDrawer.background(DEAD_COLOR, ALPHA);
     }
 
     @Override
@@ -130,8 +96,8 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
 
     @Override
     public void onPointDetected(float px, float py, float x, float y, RainbowDrawer rainbowDrawer) {
-        int cellX = (int) (x / SCALE_FACTOR);
-        int cellY = (int) (y / SCALE_FACTOR);
+        int cellX = (int) (x / CELL_SIZE);
+        int cellY = (int) (y / CELL_SIZE);
 
         if (cellX >= 0 && cellX < gameOfLife.getWidth()
                 && cellY >= 0 && cellY < gameOfLife.getHeight()) {
@@ -165,9 +131,11 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     public void clear() {
+        gameOfLifeDrawer.clearBackground();
+
         for (int i = 0; i < gameOfLife.getWidth(); i++) {
             for (int j = 0; j < gameOfLife.getHeight(); j++) {
-                gameOfLife.getCells()[i][j] = 0;
+                gameOfLife.getCells()[i][j] = DEAD;
             }
         }
     }
@@ -181,22 +149,8 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     public void loadWorldFrom(RainbowImage image) {
         for (int i = 0; i < gameOfLife.getWidth(); i++) {
             for (int j = 0; j < gameOfLife.getHeight(); j++) {
-                gameOfLife.getCells()[i][j] = extrapolateCellStateFrom(image.get(i * SCALE_FACTOR, j * SCALE_FACTOR));
+                gameOfLife.getCells()[i][j] = gameOfLifeDrawer.getCellStateFrom(image, i, j);
             }
         }
-    }
-
-    private int extrapolateCellStateFrom(int color) {
-        int red = (int) rainbowDrawer.red(color);
-        int green = (int) rainbowDrawer.green(color);
-        int blue = (int) rainbowDrawer.blue(color);
-        int grey = (red + green + blue) / THREE;
-
-        return grey < ALIVE_CELL_THRESHOLD ? DEAD : ALIVE;
-    }
-
-    public void fastClear() {
-        paintBackground(OPAQUE);
-        clear();
     }
 }

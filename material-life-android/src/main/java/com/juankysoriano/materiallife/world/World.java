@@ -2,7 +2,7 @@ package com.juankysoriano.materiallife.world;
 
 import android.net.Uri;
 
-import com.juankysoriano.materiallife.world.performer.GameOfLife;
+import com.juankysoriano.materiallife.world.life.GameOfLife;
 import com.juankysoriano.rainbow.core.Rainbow;
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
 import com.juankysoriano.rainbow.core.event.RainbowInputController;
@@ -53,7 +53,7 @@ public class World extends Rainbow implements RainbowImage.LoadPictureListener {
     }
 
     public void loadWorldFrom(final Uri image) {
-        gameOfLife.fastClear();
+        gameOfLife.clear();
         executor.execute(new Runnable() {
             @Override
             public void run() {

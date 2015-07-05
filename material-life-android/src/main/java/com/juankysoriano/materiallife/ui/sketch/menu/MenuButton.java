@@ -14,9 +14,7 @@ public class MenuButton extends FloatingActionButton {
     private static final float OPAQUE = 1f;
     private static final float TRANSPARENT = 0f;
     private static final int HIDE_DURATION = 50;
-    private static final int HIDE_DELAY = 0;
     private static final int SHOW_DURATION = 50;
-    private static final int SHOW_DELAY = 400;
     private static final AccelerateInterpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
 
     public MenuButton(Context context, AttributeSet attrs) {
@@ -27,32 +25,35 @@ public class MenuButton extends FloatingActionButton {
         super(context, attrs, defStyleAttr);
     }
 
-    public Animator animateShow() {
-        Animator animator = buildAnimatorForProperty(ALPHA, TRANSPARENT, OPAQUE, SHOW_DURATION, SHOW_DELAY);
-        animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                setVisibility(View.VISIBLE);
-            }
-        });
-        return animator;
+    public void animateShow() {
+        Animator animator = buildAnimatorForProperty(ALPHA, TRANSPARENT, OPAQUE, SHOW_DURATION);
+        animator.addListener(animationShowListener);
+        animator.start();
     }
 
-    public Animator animateHide() {
-        Animator animator = buildAnimatorForProperty(ALPHA, OPAQUE, TRANSPARENT, HIDE_DURATION, HIDE_DELAY);
-        animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                setVisibility(View.INVISIBLE);
-            }
-        });
-        return animator;
+    public void animateHide() {
+        Animator animator = buildAnimatorForProperty(ALPHA, OPAQUE, TRANSPARENT, HIDE_DURATION);
+        animator.addListener(animationHideListener);
+        animator.start();
     }
 
-    private Animator buildAnimatorForProperty(String property, float from, float to, int duration, int delay) {
+    private AnimatorListenerAdapter animationHideListener = new AnimatorListenerAdapter() {
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            setVisibility(View.INVISIBLE);
+        }
+    };
+
+    private AnimatorListenerAdapter animationShowListener = new AnimatorListenerAdapter() {
+        @Override
+        public void onAnimationStart(Animator animation) {
+            setVisibility(View.VISIBLE);
+        }
+    };
+
+    private Animator buildAnimatorForProperty(String property, float from, float to, int duration) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(this, property, from, to);
         animator.setDuration(duration);
-        animator.setStartDelay(delay);
         animator.setInterpolator(ACCELERATE_INTERPOLATOR);
         return animator;
     }

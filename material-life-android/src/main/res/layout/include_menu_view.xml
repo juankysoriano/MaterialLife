@@ -5,19 +5,18 @@
   android:layout_width="match_parent"
   android:layout_height="@dimen/menu_height">
 
-  <com.juankysoriano.materiallife.ui.sketch.reveal.RevealView
-    android:id="@+id/reveal_view"
+  <io.codetail.widget.RevealFrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="match_parent">
 
-  <com.juankysoriano.materiallife.ui.sketch.menu.MenuOptionsView
-    style="@style/MenuOptions"
-    android:id="@+id/menu_list"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scaleX="0"
-    android:scaleY="0"
-    android:visibility="invisible" />
+    <com.juankysoriano.materiallife.ui.sketch.menu.MenuOptionsView
+      style="@style/MenuOptions"
+      android:id="@+id/menu_list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:visibility="invisible" />
+  </io.codetail.widget.RevealFrameLayout>
+
 
   <com.juankysoriano.materiallife.ui.sketch.menu.MenuButton
     style="@style/MaterialFAB"

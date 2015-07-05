@@ -1,19 +1,14 @@
 package com.juankysoriano.materiallife.ui.sketch.menu;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import com.juankysoriano.materiallife.R;
-import com.juankysoriano.materiallife.ui.sketch.reveal.RevealView;
 import com.juankysoriano.materiallife.ui.util.ViewMeasurer;
 import com.novoda.notils.caster.Views;
 
 public class MenuView extends RelativeLayout {
-    private RevealView revealView;
     private MenuButton menuButton;
     private MenuOptionsView menuOptionsView;
     private boolean menuOpened;
@@ -29,18 +24,9 @@ public class MenuView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        revealView = Views.findById(this, R.id.reveal_view);
         menuButton = Views.findById(this, R.id.menu_fab_button);
         menuOptionsView = Views.findById(this, R.id.menu_list);
         menuOptionsView.setAdapter(MenuItemAdapter.newInstance());
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        revealView.setRevealFromRadius(menuButton.getWidth() / 2);
-        revealView.setRevealTargetRadius(ViewMeasurer.getRadiusFor(revealView) + menuButton.getWidth());
-        revealView.setCentreFrom(ViewMeasurer.getViewNormalisedCenter(menuButton, this));
     }
 
     public void openMenu() {
@@ -58,26 +44,12 @@ public class MenuView extends RelativeLayout {
     }
 
     private void doRevealAnimation() {
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(menuOptionsView.animateShow(), menuButton.animateHide());
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                revealView.reveal();
-            }
-        });
-        animatorSet.start();
+        menuButton.animateHide();
+        menuOptionsView.revealFrom(ViewMeasurer.getViewCenter(menuButton));
     }
 
     private void doConcealAnimation() {
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(menuOptionsView.animateHide(), menuButton.animateShow());
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                revealView.conceal();
-            }
-        });
-        animatorSet.start();
+        menuButton.animateShow();
+        menuOptionsView.concealFrom(ViewMeasurer.getViewCenter(menuButton));
     }
 }

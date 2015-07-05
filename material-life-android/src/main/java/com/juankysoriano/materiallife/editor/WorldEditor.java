@@ -21,6 +21,7 @@ public class WorldEditor {
 
     public void cancel() {
         world.restoreLastWorld();
+        endEdition();
     }
 
     public void endEdition() {

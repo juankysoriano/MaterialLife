@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.activities;
+package com.juankysoriano.materiallife.imageloader;
 
 public enum ImageLoaderResult {
     GALLERY(23214),

@@ -1,7 +1,6 @@
 package com.juankysoriano.materiallife.info.preferences;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.juankysoriano.materiallife.ContextRetriever;
@@ -24,12 +23,8 @@ public class InfoPreferences {
         return new InfoPreferences(sharedPreferences);
     }
 
-    public boolean shouldShowInfo(Intent launchIntent) {
-        return !sharedPreferences.getBoolean(ALREADY_SEEN, false) || isFromMenu(launchIntent);
-    }
-
-    private boolean isFromMenu(Intent launchIntent) {
-        return launchIntent.getBooleanExtra(FROM_MENU, false);
+    public boolean shouldShowInfo() {
+        return !sharedPreferences.getBoolean(ALREADY_SEEN, false);
     }
 
     public void markInfoAsSeen() {

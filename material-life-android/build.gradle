@@ -57,14 +57,11 @@ android {
         compile project(':openca')
         compile project(':rainbow')
         compile project(':intro')
+        compile 'com.github.ozodrukh:CircularReveal:1.1.0@aar'
         compile 'com.android.support:design:22.2.0'
-        compile 'com.github.juankysoriano:CircularFloatingActionMenu:v0.6.0'
         compile 'com.google.android.gms:play-services-analytics:7.5.0'
-        compile 'com.nineoldandroids:library:2.4.0'
         compile 'com.android.support:support-annotations:22.2.0'
         compile 'com.android.support:appcompat-v7:22.2.0'
-        compile 'com.afollestad:material-dialogs:0.6.3.3'
-        compile 'de.hdodenhof:circleimageview:1.2.2'
         compile('com.novoda:notils:2.2.11') {
             exclude module: 'support-v4'
         }

@@ -28,7 +28,6 @@ public class MainMenuFragment extends Fragment implements MainMenu {
         menuView = Views.findById(fragmentView, R.id.menu_layout);
         menuOptionsView = Views.findById(fragmentView, R.id.menu_list);
         menuButton = Views.findById(fragmentView, R.id.menu_fab_button);
-        menuOptionsView.setVisibility(View.GONE);
         return fragmentView;
     }
 

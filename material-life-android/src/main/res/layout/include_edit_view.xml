@@ -5,11 +5,18 @@
   android:layout_width="wrap_content"
   android:layout_height="wrap_content">
 
-  <com.juankysoriano.materiallife.ui.sketch.reveal.RevealView
-    android:id="@+id/reveal_view"
+  <io.codetail.widget.RevealFrameLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="invisible" />
+    android:layout_height="match_parent">
+
+    <com.juankysoriano.materiallife.ui.sketch.editor.ClearView
+      android:id="@+id/clear_view"
+      android:background="@color/primary_bright"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:visibility="invisible" />
+  </io.codetail.widget.RevealFrameLayout>
+
 
   <LinearLayout
     android:layout_width="match_parent"
@@ -28,7 +35,7 @@
     <Space
       android:layout_width="0dp"
       android:layout_weight="1"
-      android:layout_height="0dp"/>
+      android:layout_height="0dp" />
 
     <com.juankysoriano.materiallife.ui.sketch.PixelButton
       style="@style/PixelText.Button"
