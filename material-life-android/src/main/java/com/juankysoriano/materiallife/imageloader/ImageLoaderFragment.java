@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.juankysoriano.materiallife.R;
-import com.juankysoriano.materiallife.WorldRetriever;
 import com.juankysoriano.materiallife.editor.WorldEditor;
 import com.juankysoriano.materiallife.ui.sketch.PixelButton;
 import com.novoda.notils.caster.Views;
@@ -28,7 +27,7 @@ public class ImageLoaderFragment extends Fragment implements ImageLoader {
         View fragmentView = inflater.inflate(R.layout.include_image_selector, container, false);
         cameraButton = Views.findById(fragmentView, R.id.from_camera);
         galleryButton = Views.findById(fragmentView, R.id.from_gallery);
-        worldEditor = new WorldEditor(WorldRetriever.INSTANCE.getWorld());
+        worldEditor = WorldEditor.newInstance();
         return fragmentView;
     }
 

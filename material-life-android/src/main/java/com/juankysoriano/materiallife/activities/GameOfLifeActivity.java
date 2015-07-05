@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
-import com.juankysoriano.materiallife.navigaton.MenuSwitcher;
 import com.juankysoriano.materiallife.R;
 import com.juankysoriano.materiallife.WorldRetriever;
-import com.juankysoriano.materiallife.navigaton.MaterialLifePictureRetriever;
 import com.juankysoriano.materiallife.editor.EditorAction;
 import com.juankysoriano.materiallife.editor.WorldEditorMenu;
 import com.juankysoriano.materiallife.imageloader.ImageLoader;
@@ -17,6 +15,8 @@ import com.juankysoriano.materiallife.info.InfoActivity;
 import com.juankysoriano.materiallife.info.preferences.InfoPreferences;
 import com.juankysoriano.materiallife.menu.MainMenu;
 import com.juankysoriano.materiallife.menu.MenuItem;
+import com.juankysoriano.materiallife.navigation.MenuSwitcher;
+import com.juankysoriano.materiallife.navigation.PictureRetriever;
 import com.juankysoriano.materiallife.ui.sketch.editor.EditorMenuView;
 import com.juankysoriano.materiallife.ui.sketch.menu.MenuOptionsView;
 import com.juankysoriano.materiallife.world.World;
@@ -26,7 +26,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     private final World world;
     private final InfoPreferences infoPreferences;
     private MenuSwitcher menuSwitcher;
-    private MaterialLifePictureRetriever materialLifePictureRetriever;
+    private PictureRetriever pictureRetriever;
     private MainMenu mainMenu;
     private WorldEditorMenu editorMenu;
     private ImageLoader imageLoader;
@@ -35,7 +35,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
         this(World.newInstance(), InfoPreferences.newInstance());
     }
 
-    public GameOfLifeActivity(World world, InfoPreferences infoPreferences) {
+    private GameOfLifeActivity(World world, InfoPreferences infoPreferences) {
         WorldRetriever.INSTANCE.inject(world);
         this.world = world;
         this.infoPreferences = infoPreferences;
@@ -44,8 +44,8 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        menuSwitcher = new MenuSwitcher(getSupportFragmentManager());
-        materialLifePictureRetriever = new MaterialLifePictureRetriever();
+        menuSwitcher = MenuSwitcher.newInstance();
+        pictureRetriever = new PictureRetriever();
 
         setContentView(R.layout.world);
         world.injectInto((ViewGroup) findViewById(R.id.world));
@@ -105,10 +105,10 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
         public void onLoadImage(ImageLoaderAction action) {
             switch (action) {
                 case CAMERA:
-                    materialLifePictureRetriever.openCameraForResult();
+                    pictureRetriever.openCameraForResult();
                     break;
                 case GALLERY:
-                    materialLifePictureRetriever.openGalleryForResult();
+                    pictureRetriever.openGalleryForResult();
                     break;
             }
         }
@@ -127,7 +127,7 @@ public class GameOfLifeActivity extends MaterialLifeActivity {
 
         switch (imageLoaderResult) {
             case CAMERA:
-                imageLoader.loadWorldFrom(materialLifePictureRetriever.getLastLoadedImagePath());
+                imageLoader.loadWorldFrom(pictureRetriever.getLastLoadedImagePath());
                 addEditorMenu();
                 break;
             case GALLERY:

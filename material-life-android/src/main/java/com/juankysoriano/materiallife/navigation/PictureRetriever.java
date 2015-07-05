@@ -1,4 +1,4 @@
-package com.juankysoriano.materiallife.navigaton;
+package com.juankysoriano.materiallife.navigation;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +12,7 @@ import com.novoda.notils.logger.simple.Log;
 import java.io.File;
 import java.io.IOException;
 
-public class MaterialLifePictureRetriever {
+public class PictureRetriever {
     private static final String MATERIAL_LIFE = "MATERIAL_LIFE";
     private static final String EXTENSION = ".jpg";
     private static final String FILE_SCHEME = "file:";

@@ -31,7 +31,7 @@ public class WorldEditorMenuFragment extends Fragment implements WorldEditorMenu
         clearButton = Views.findById(fragmentView, R.id.edit_fab_clear);
         cancelButton = Views.findById(fragmentView, R.id.edit_fab_cancel);
         doneButton = Views.findById(fragmentView, R.id.edit_fab_accept);
-        worldEditor = new WorldEditor(WorldRetriever.INSTANCE.getWorld());
+        worldEditor = WorldEditor.newInstance();
         return fragmentView;
     }
 
