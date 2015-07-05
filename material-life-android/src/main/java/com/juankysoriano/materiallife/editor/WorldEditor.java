@@ -1,13 +1,20 @@
 package com.juankysoriano.materiallife.editor;
 
 import android.net.Uri;
+import android.support.annotation.VisibleForTesting;
 
+import com.juankysoriano.materiallife.WorldRetriever;
 import com.juankysoriano.materiallife.world.World;
 
 public class WorldEditor {
     private final World world;
 
-    public WorldEditor(World world) {
+    public static WorldEditor newInstance() {
+        return new WorldEditor(WorldRetriever.INSTANCE.getWorld());
+    }
+
+    @VisibleForTesting
+    protected WorldEditor(World world) {
         this.world = world;
     }
 
