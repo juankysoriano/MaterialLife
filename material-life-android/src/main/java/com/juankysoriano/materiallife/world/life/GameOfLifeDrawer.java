@@ -1,5 +1,7 @@
 package com.juankysoriano.materiallife.world.life;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.juankysoriano.materiallife.ContextRetriever;
 import com.juankysoriano.materiallife.R;
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
@@ -8,13 +10,14 @@ import com.juankysoriano.rainbow.core.graphics.RainbowImage;
 public class GameOfLifeDrawer {
     private static final int ALIVE_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.alive);
     private static final int DEAD_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.dead);
-    private static final int SCALE_FACTOR = 10;
+    private static final int SCALE_FACTOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getInteger(R.integer.cell_size);
     private static final int ALPHA = 70;
     private static final float OPAQUE = 255;
     private static final int ALIVE_CELL_THRESHOLD = 128;
     private static final int THREE = 3;
     private final RainbowDrawer rainbowDrawer;
 
+    @VisibleForTesting
     protected GameOfLifeDrawer(RainbowDrawer rainbowDrawer) {
         this.rainbowDrawer = rainbowDrawer;
     }
