@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class WorldRetrieverTest {
+public class WorldRetrieverTest extends MaterialLifeTestBase {
     @Mock
     private World world;
 
