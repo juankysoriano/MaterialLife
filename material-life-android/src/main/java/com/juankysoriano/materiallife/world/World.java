@@ -1,6 +1,7 @@
 package com.juankysoriano.materiallife.world;
 
 import android.net.Uri;
+import android.support.annotation.VisibleForTesting;
 
 import com.juankysoriano.materiallife.world.life.GameOfLife;
 import com.juankysoriano.rainbow.core.Rainbow;
@@ -12,8 +13,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class World extends Rainbow implements RainbowImage.LoadPictureListener {
-    private static final ExecutorService executor = Executors.newSingleThreadExecutor();
-    private GameOfLife gameOfLife;
+    private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
+
+    @VisibleForTesting
+    protected GameOfLife gameOfLife;
 
     public static World newInstance() {
         RainbowDrawer rainbowDrawer = new RainbowDrawer();
@@ -21,6 +24,7 @@ public class World extends Rainbow implements RainbowImage.LoadPictureListener {
         return new World(rainbowDrawer, rainbowInputController);
     }
 
+    @VisibleForTesting
     protected World(RainbowDrawer rainbowDrawer, RainbowInputController rainbowInputController) {
         super(rainbowDrawer, rainbowInputController);
     }
@@ -35,12 +39,12 @@ public class World extends Rainbow implements RainbowImage.LoadPictureListener {
         gameOfLife.startEdition();
     }
 
-    public void clear() {
-        gameOfLife.clear();
-    }
-
     public void endEdition() {
         gameOfLife.endEdition();
+    }
+
+    public void clear() {
+        gameOfLife.clear();
     }
 
     @Override
@@ -54,7 +58,7 @@ public class World extends Rainbow implements RainbowImage.LoadPictureListener {
 
     public void loadWorldFrom(final Uri image) {
         gameOfLife.clear();
-        executor.execute(new Runnable() {
+        EXECUTOR.execute(new Runnable() {
             @Override
             public void run() {
                 getRainbowDrawer().loadImage(image, RainbowImage.LOAD_CENTER_CROP, World.this);
