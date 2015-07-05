@@ -1,21 +1,21 @@
 package com.juankysoriano.materiallife;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v4.app.FragmentActivity;
 
 public enum ContextRetriever {
     INSTANCE;
 
     private Application application;
-    private Activity activity;
+    private FragmentActivity activity;
 
     public void inject(Application application) {
         this.application = application;
     }
 
-    public void inject(Activity activity) {
+    public void inject(FragmentActivity activity) {
         this.activity = activity;
     }
 
@@ -23,7 +23,7 @@ public enum ContextRetriever {
         return application.getApplicationContext();
     }
 
-    public Activity getActivity() {
+    public FragmentActivity getActivity() {
         return activity;
     }
 
