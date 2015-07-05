@@ -1,5 +1,6 @@
 package com.juankysoriano.materiallife.world.life;
 
+import android.support.annotation.VisibleForTesting;
 import android.view.MotionEvent;
 
 import com.juankysoriano.materiallife.ContextRetriever;
@@ -33,6 +34,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
         return gameOfLife;
     }
 
+    @VisibleForTesting
     protected GameOfLife(AutomataDiscrete2D gameOfLife, GameOfLifeDrawer gameOfLifeDrawer, RainbowInputController rainbowInputController) {
         this.gameOfLife = gameOfLife;
         this.gameOfLifeDrawer = gameOfLifeDrawer;
@@ -41,7 +43,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
 
     public void doStep() {
         gameOfLifeDrawer.paintBackground();
-        if (editing) {
+        if (isEditing()) {
             paintCellsWithoutEvolution();
         } else {
             paintCellsAndEvolve();
@@ -51,7 +53,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     private void paintCellsWithoutEvolution() {
         for (int i = 0; i < gameOfLife.getWidth(); i++) {
             for (int j = 0; j < gameOfLife.getHeight(); j++) {
-                onCellDetected(i, j, gameOfLife.getCells()[i][j]);
+                paintCellWithStateAt(i, j, gameOfLife.getCells()[i][j]);
             }
         }
     }
@@ -62,6 +64,10 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
 
     @Override
     public void onCellDetected(int x, int y, int state) {
+        paintCellWithStateAt(x, y, state);
+    }
+
+    private void paintCellWithStateAt(int x, int y, int state) {
         if (isCellAlive(state)) {
             gameOfLifeDrawer.paintCellAt(x, y);
         }
@@ -111,10 +117,15 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     public void startEdition() {
-        if (!editing) {
+        if (!isEditing()) {
             editing = true;
             doCellsBackup();
         }
+    }
+
+    @VisibleForTesting
+    protected boolean isEditing() {
+        return editing;
     }
 
     private void doCellsBackup() {
@@ -132,12 +143,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
 
     public void clear() {
         gameOfLifeDrawer.clearBackground();
-
-        for (int i = 0; i < gameOfLife.getWidth(); i++) {
-            for (int j = 0; j < gameOfLife.getHeight(); j++) {
-                gameOfLife.getCells()[i][j] = DEAD;
-            }
-        }
+        gameOfLife.clear();
     }
 
     public void restoreLastWorld() {
