@@ -1,7 +1,7 @@
 # Material Life
 Conway's Game of Life meets Material design in an Android exclusive experiene
 
-![](http://s13.postimg.org/lbzrltblj/device.png)
+![](http://postimg.org/image/ladf3c8ez/)
 [![Material Life is on Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.juankysoriano.materiallife)
 
 Building is easy, just do `./gradlew clean life` and it will build the apk, execute the unit tests and run a few code analysis tools.
