@@ -1,3 +1,2 @@
-include ':material-life-android', ':intro'
-project(':intro').projectDir = new File('.', '../AppIntro/library')
+include ':material-life-android'
 
