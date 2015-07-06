@@ -104,12 +104,4 @@ public class WorldTest extends MaterialLifeTestBase {
             gameOfLife = gameOfLifeMock;
         }
     }
-
-    protected GameOfLife getGameOfLifeMock() {
-        return gameOfLifeMock;
-    }
-
-    protected World getWorld() {
-        return world;
-    }
 }

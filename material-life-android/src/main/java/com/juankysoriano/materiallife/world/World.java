@@ -51,7 +51,13 @@ public class World extends Rainbow implements RainbowImage.LoadPictureListener {
 
     @Override
     public void onDrawingStep() {
-        gameOfLife.doStep();
+        if (hasGameOfLife()) {
+            gameOfLife.doStep();
+        }
+    }
+
+    private boolean hasGameOfLife() {
+        return gameOfLife != null;
     }
 
     public void restoreLastWorld() {
