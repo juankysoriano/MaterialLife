@@ -55,7 +55,7 @@ android {
 
     dependencies {
         compile project(':intro')
-        compile 'com.github.juankysoriano:open-ca:v0.1.9'
+        compile 'com.github.juankysoriano:open-ca:v0.2.0-rc1'
         compile 'com.github.juankysoriano:rainbow:v1.0.0-rc4'
         compile 'com.github.ozodrukh:CircularReveal:1.1.1'
         compile 'com.android.support:design:22.2.0'
