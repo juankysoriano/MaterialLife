@@ -54,9 +54,9 @@ android {
     }
 
     dependencies {
-        compile project(':openca')
-        compile project(':rainbow')
         compile project(':intro')
+        compile 'com.github.juankysoriano:open-ca:v0.1.9'
+        compile 'com.github.juankysoriano:rainbow:v1.0.0-rc4'
         compile 'com.github.ozodrukh:CircularReveal:1.1.1'
         compile 'com.android.support:design:22.2.0'
         compile 'com.google.android.gms:play-services-analytics:7.5.0'
