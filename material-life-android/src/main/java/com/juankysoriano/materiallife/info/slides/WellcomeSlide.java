@@ -6,6 +6,6 @@ public class WellcomeSlide extends SlideFragmentWithoutWorld {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.intro_wellcome;
+        return R.layout.intro_welcome;
     }
 }

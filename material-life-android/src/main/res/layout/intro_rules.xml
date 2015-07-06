@@ -17,6 +17,7 @@
     style="@style/PixelText.Description"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:text="@string/rules_explanation"
     android:layout_weight="0.14" />
 

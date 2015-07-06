@@ -6,6 +6,11 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1"/>
+
   <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="0dp"
@@ -17,29 +22,31 @@
       style="@style/PixelText.Description.Title"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Wellcome to" />
+      android:layout_gravity="center"
+      android:text="@string/intro_welcome" />
 
     <com.juankysoriano.materiallife.ui.sketch.PixelTextView
       style="@style/PixelText.Description.Title.Big"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Material Life" />
+      android:layout_gravity="center"
+      android:text="@string/intro_material_life" />
   </LinearLayout>
-
 
   <ImageView
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:layout_weight="0.7"
+    android:layout_weight="0.6"
     android:layout_gravity="center"
-    android:src="@drawable/material_icon" />
+    android:src="@drawable/ic_material_life_icon"
+    android:contentDescription="@null"/>
 
   <com.juankysoriano.materiallife.ui.sketch.PixelTextView
     style="@style/PixelText.Description"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:text="(Material Design + The Game of Life)"
+    android:text="@string/intro_material_design"
     android:layout_weight="0.14" />
 
   <Space

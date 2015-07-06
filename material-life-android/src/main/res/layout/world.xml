@@ -12,14 +12,5 @@
     android:layout_gravity="bottom"
     android:gravity="bottom"/>
 
-  <!--  <include layout="@layout/include_edit_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" />
-
-    <include layout="@layout/include_menu_view"
-      android:layout_width="match_parent"
-      android:layout_height="200dp"
-      android:layout_centerHorizontal="true"
-      android:layout_alignParentBottom="true"/>-->
 </FrameLayout>
 
