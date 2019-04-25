@@ -1,41 +1,23 @@
-subprojects {
-    buildscript {
-        repositories {
-            mavenCentral()
-            maven {
-                url "https://oss.sonatype.org/content/repositories/snapshots"
-            }
-        }
-        dependencies {
-            classpath 'com.android.tools.build:gradle:1.2.3'
-            classpath 'com.github.dcendents:android-maven-plugin:1.2'
-            classpath 'org.robolectric:robolectric-gradle-plugin:1.1.0'
-        }
-    }
-
+buildscript {
     repositories {
+        google()
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.0'
+    }
+}
 
-        maven {
-            url "https://jitpack.io"
-        }
-
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
 ext {
-    materialLifeProject = project(':material-life-android')
-    androidDebugClassesFolder = "intermediates/classes/debug"
-    javaTestClassesFolder = "classes/test"
-
-    MIN_SDK = 17
-    TARGET_SDK = 22
-    COMPILE_SDK = 22
-    BUILD_TOOLS = "22.0.1"
-
     VERSION_CODE = 1644109
     VERSION_NAME = "1.0.9"
 }

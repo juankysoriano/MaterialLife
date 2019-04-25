@@ -12,8 +12,8 @@ import com.openca.bi.OnCellUpdatedCallback2D;
 import com.openca.bi.discrete.AutomataDiscrete2D;
 
 public class GameOfLife implements RainbowInputController.RainbowInteractionListener, OnCellUpdatedCallback2D, RainbowDrawer.PointDetectedListener {
-    public static final int ALIVE = 1;
-    public static final int DEAD = 0;
+    static final int ALIVE = 1;
+    static final int DEAD = 0;
     private static final int CELL_SIZE = ContextRetriever.INSTANCE.getResources().getInteger(R.integer.cell_size);
     private final AutomataDiscrete2D gameOfLifeAutomata;
     private final RainbowInputController rainbowInputController;
@@ -28,14 +28,12 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
         GameOfLifeCreator gameOfLifeCreator = GameOfLifeCreator.newInstance();
         AutomataDiscrete2D automata = gameOfLifeCreator.createGameOfLife(width, height);
         GameOfLifeDrawer gameOfLifeDrawer = GameOfLifeDrawer.newInstance(rainbowDrawer);
-        GameOfLife gameOfLife = new GameOfLife(automata, gameOfLifeDrawer, rainbowInputController);
-        rainbowInputController.setRainbowInteractionListener(gameOfLife);
 
-        return gameOfLife;
+        return new GameOfLife(automata, gameOfLifeDrawer, rainbowInputController);
     }
 
     @VisibleForTesting
-    protected GameOfLife(AutomataDiscrete2D gameOfLifeAutomata, GameOfLifeDrawer gameOfLifeDrawer, RainbowInputController rainbowInputController) {
+    GameOfLife(AutomataDiscrete2D gameOfLifeAutomata, GameOfLifeDrawer gameOfLifeDrawer, RainbowInputController rainbowInputController) {
         this.gameOfLifeAutomata = gameOfLifeAutomata;
         this.gameOfLifeDrawer = gameOfLifeDrawer;
         this.rainbowInputController = rainbowInputController;
@@ -78,30 +76,32 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     @Override
-    public void onSketchTouched(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
-        onPointDetected(rainbowInputController.getPreviousX(),
+    public void onSketchTouched(MotionEvent motionEvent) {
+        onPointDetected(
+                rainbowInputController.getPreviousX(),
                 rainbowInputController.getPreviousY(),
                 rainbowInputController.getX(),
-                rainbowInputController.getY(), rainbowDrawer);
+                rainbowInputController.getY()
+        );
     }
 
     @Override
-    public void onSketchReleased(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
+    public void onSketchReleased(MotionEvent motionEvent) {
         //no-op
     }
 
     @Override
-    public void onFingerDragged(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
+    public void onFingerDragged(MotionEvent motionEvent) {
         int x = (int) rainbowInputController.getX();
         int y = (int) rainbowInputController.getY();
         int previousX = (int) rainbowInputController.getPreviousX();
         int previousY = (int) rainbowInputController.getPreviousY();
 
-        rainbowDrawer.exploreLine(previousX, previousY, x, y, RainbowDrawer.Precision.HIGH, this);
+        rainbowInputController.getRainbowDrawer().exploreLine(previousX, previousY, x, y, RainbowDrawer.Precision.HIGH, this);
     }
 
     @Override
-    public void onPointDetected(float px, float py, float x, float y, RainbowDrawer rainbowDrawer) {
+    public void onPointDetected(float px, float py, float x, float y) {
         int cellX = (int) (x / CELL_SIZE);
         int cellY = (int) (y / CELL_SIZE);
 
@@ -112,7 +112,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     @Override
-    public void onMotionEvent(MotionEvent motionEvent, RainbowDrawer rainbowDrawer) {
+    public void onMotionEvent(MotionEvent motionEvent) {
         //no-op
     }
 
@@ -124,7 +124,7 @@ public class GameOfLife implements RainbowInputController.RainbowInteractionList
     }
 
     @VisibleForTesting
-    protected boolean isEditing() {
+    boolean isEditing() {
         return editing;
     }
 

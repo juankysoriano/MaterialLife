@@ -2,8 +2,8 @@ package com.juankysoriano.materiallife.world;
 
 import android.net.Uri;
 
-import com.juankysoriano.materiallife.RobolectricMaterialLifeGradleTestRunner;
 import com.juankysoriano.materiallife.MaterialLifeTestBase;
+import com.juankysoriano.materiallife.RobolectricMaterialLifeGradleTestRunner;
 import com.juankysoriano.materiallife.world.life.GameOfLife;
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
 import com.juankysoriano.rainbow.core.event.RainbowInputController;
@@ -61,7 +61,7 @@ public class WorldTest extends MaterialLifeTestBase {
 
     @Test
     public void testThatWhenOnDrawingStepIsCalledThenGameOfLifeStepIsDone() {
-        world.onDrawingStep();
+        world.onStep();
 
         verify(gameOfLifeMock).doStep();
     }

@@ -11,14 +11,14 @@ public class GameOfLifeDrawer {
     private static final int ALIVE_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.alive);
     private static final int DEAD_COLOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getColor(R.color.dead);
     private static final int SCALE_FACTOR = ContextRetriever.INSTANCE.getApplicationContext().getResources().getInteger(R.integer.cell_size);
-    private static final int ALPHA = 70;
+    private static final int ALPHA = 20;
     private static final float OPAQUE = 255;
     private static final int ALIVE_CELL_THRESHOLD = 128;
     private static final int THREE = 3;
     private final RainbowDrawer rainbowDrawer;
 
     @VisibleForTesting
-    protected GameOfLifeDrawer(RainbowDrawer rainbowDrawer) {
+    GameOfLifeDrawer(RainbowDrawer rainbowDrawer) {
         this.rainbowDrawer = rainbowDrawer;
     }
 
@@ -31,11 +31,10 @@ public class GameOfLifeDrawer {
     private static void configure(RainbowDrawer rainbowDrawer) {
         rainbowDrawer.noStroke();
         rainbowDrawer.smooth();
-        rainbowDrawer.vSync();
         rainbowDrawer.fill(ALIVE_COLOR);
     }
 
-    public int getCellStateFrom(RainbowImage image, int cellX, int cellY) {
+    int getCellStateFrom(RainbowImage image, int cellX, int cellY) {
         int color = image.get(cellX * SCALE_FACTOR, cellY * SCALE_FACTOR);
         int red = (int) rainbowDrawer.red(color);
         int green = (int) rainbowDrawer.green(color);
@@ -45,15 +44,15 @@ public class GameOfLifeDrawer {
         return grey < ALIVE_CELL_THRESHOLD ? GameOfLife.DEAD : GameOfLife.ALIVE;
     }
 
-    public void paintCellAt(int x, int y) {
+    void paintCellAt(int x, int y) {
         rainbowDrawer.rect(x * SCALE_FACTOR, y * SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR);
     }
 
-    public void paintBackground() {
+    void paintBackground() {
         rainbowDrawer.background(DEAD_COLOR, ALPHA);
     }
 
-    public void clearBackground() {
+    void clearBackground() {
         rainbowDrawer.background(DEAD_COLOR, OPAQUE);
     }
 }
