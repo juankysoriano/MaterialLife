@@ -1,6 +1,6 @@
 <resources>
 
-  <style name="MaterialLifeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="MaterialLifeTheme" parent="Theme.MaterialComponents">
     <item name="colorPrimary">@color/primary</item> 
     <item name="colorPrimaryDark">@color/primary_dark</item> 
     <item name="colorAccent">@color/accent</item>
@@ -73,8 +73,6 @@
 
   <style name="MaterialFAB">
     <item name="fabSize">normal</item>
-    <!--<item name="elevation">@dimen/fab_elevation</item>-->
-    <!--<item name="pressedTranslationZ">@dimen/fab_translation_z_pressed</item>-->
     <item name="borderWidth">0dp</item>
     <item name="android:layout_margin">@dimen/fab_margin_bottom</item>
     <item name="android:layout_centerHorizontal">true</item>

@@ -2,7 +2,7 @@ package com.juankysoriano.materiallife.navigation;
 
 import android.content.Intent;
 import android.provider.MediaStore;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.juankysoriano.materiallife.ContextRetriever;
 import com.juankysoriano.materiallife.MaterialLifeTestBase;

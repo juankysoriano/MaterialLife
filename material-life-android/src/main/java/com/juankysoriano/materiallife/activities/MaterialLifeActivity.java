@@ -1,7 +1,7 @@
 package com.juankysoriano.materiallife.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.juankysoriano.materiallife.ContextRetriever;
 import com.juankysoriano.materiallife.analytics.AnalyticsTracker;

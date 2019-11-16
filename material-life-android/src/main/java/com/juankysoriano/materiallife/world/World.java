@@ -1,7 +1,6 @@
 package com.juankysoriano.materiallife.world;
 
 import android.net.Uri;
-import android.support.annotation.VisibleForTesting;
 
 import com.juankysoriano.materiallife.world.life.GameOfLife;
 import com.juankysoriano.rainbow.core.Rainbow;
@@ -11,6 +10,8 @@ import com.juankysoriano.rainbow.core.event.RainbowInputController;
 import com.juankysoriano.rainbow.core.graphics.RainbowImage;
 import com.juankysoriano.rainbow.utils.schedulers.RainbowScheduler;
 import com.juankysoriano.rainbow.utils.schedulers.RainbowSchedulers;
+
+import androidx.annotation.VisibleForTesting;
 
 public class World extends Rainbow implements RainbowImage.LoadPictureListener {
     private static final RainbowScheduler SCHEDULER = RainbowSchedulers.single("LoadWorld", RainbowSchedulers.Priority.MIN);

@@ -1,7 +1,7 @@
 package com.juankysoriano.materiallife.navigation;
 
-import android.support.annotation.VisibleForTesting;
-import android.support.v4.app.FragmentManager;
+import androidx.annotation.VisibleForTesting;
+import androidx.fragment.app.FragmentManager;
 
 import com.juankysoriano.materiallife.ContextRetriever;
 import com.juankysoriano.materiallife.R;

@@ -1,9 +1,9 @@
 package com.juankysoriano.materiallife.world;
 
-import android.support.annotation.VisibleForTesting;
-
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
 import com.juankysoriano.rainbow.core.event.RainbowInputController;
+
+import androidx.annotation.VisibleForTesting;
 
 public class EmptyWorld extends World {
 

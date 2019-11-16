@@ -1,6 +1,5 @@
 package com.juankysoriano.materiallife.world.life;
 
-import android.support.annotation.VisibleForTesting;
 import android.view.MotionEvent;
 
 import com.juankysoriano.materiallife.ContextRetriever;
@@ -10,6 +9,8 @@ import com.juankysoriano.rainbow.core.event.RainbowInputController;
 import com.juankysoriano.rainbow.core.graphics.RainbowImage;
 import com.openca.bi.OnCellUpdatedCallback2D;
 import com.openca.bi.discrete.AutomataDiscrete2D;
+
+import androidx.annotation.VisibleForTesting;
 
 public class GameOfLife implements RainbowInputController.RainbowInteractionListener, OnCellUpdatedCallback2D, RainbowDrawer.PointDetectedListener {
     static final int ALIVE = 1;

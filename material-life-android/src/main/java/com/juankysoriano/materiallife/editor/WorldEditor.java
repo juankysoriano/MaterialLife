@@ -1,7 +1,7 @@
 package com.juankysoriano.materiallife.editor;
 
 import android.net.Uri;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.VisibleForTesting;
 
 import com.juankysoriano.materiallife.WorldRetriever;
 import com.juankysoriano.materiallife.world.World;

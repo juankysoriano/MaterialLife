@@ -1,9 +1,9 @@
 package com.juankysoriano.materiallife.navigation;
 
 import android.annotation.SuppressLint;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.juankysoriano.materiallife.MaterialLifeTestBase;
 import com.juankysoriano.materiallife.R;

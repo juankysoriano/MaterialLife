@@ -1,7 +1,7 @@
 package com.juankysoriano.materiallife.ui.sketch.menu;
 
 import android.content.Context;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.VisibleForTesting;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

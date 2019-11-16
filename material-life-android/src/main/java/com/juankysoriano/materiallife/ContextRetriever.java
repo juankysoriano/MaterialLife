@@ -3,7 +3,7 @@ package com.juankysoriano.materiallife;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
 public enum ContextRetriever {
     INSTANCE;
