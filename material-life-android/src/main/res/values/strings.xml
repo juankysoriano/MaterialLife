@@ -26,4 +26,6 @@
   <string name="intro_welcome">Welcome to</string>
   <string name="intro_material_life">Material Life</string>
   <string name="intro_material_design">(Material Design + The Game of Life)</string>
+
+  <string name="file_provider">com.juankysoriano.materiallife.fileprovider</string>
 </resources>
