@@ -3,20 +3,18 @@ package com.juankysoriano.materiallife.editor;
 import android.net.Uri;
 
 import com.juankysoriano.materiallife.MaterialLifeTestBase;
-import com.juankysoriano.materiallife.RobolectricMaterialLifeGradleTestRunner;
 import com.juankysoriano.materiallife.world.World;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-@RunWith(RobolectricMaterialLifeGradleTestRunner.class)
 public class WorldEditorTest extends MaterialLifeTestBase {
-    private static Uri ANY_URI = Uri.parse("anyUri");
+    private static Uri ANY_URI = mock(Uri.class);
     @Mock
     private World world;
     private WorldEditor worldEditor;

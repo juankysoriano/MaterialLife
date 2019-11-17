@@ -1,7 +1,6 @@
 package com.juankysoriano.materiallife.ui.sketch.menu;
 
-import android.os.Build;
-
+import com.juankysoriano.materiallife.ContextRetriever;
 import com.juankysoriano.materiallife.MaterialLifeTestBase;
 import com.juankysoriano.materiallife.menu.MenuItem;
 
@@ -11,17 +10,14 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.ParameterizedRobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
-import org.robolectric.annotation.Config;
+import org.junit.runners.Parameterized;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-@RunWith(ParameterizedRobolectricTestRunner.class)
-@Config(sdk = Build.VERSION_CODES.LOLLIPOP)
+@RunWith(Parameterized.class)
 public class MenuItemAdapterTest extends MaterialLifeTestBase {
 
-    @ParameterizedRobolectricTestRunner.Parameters(name = "{0}->{1}")
+    @Parameterized.Parameters(name = "{0}->{1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {0, MenuItem.EDIT_WORLD.value()},
@@ -36,7 +32,7 @@ public class MenuItemAdapterTest extends MaterialLifeTestBase {
 
     @Before
     public void setUp() {
-        menuItemAdapter = new MenuItemAdapter(RuntimeEnvironment.application);
+        menuItemAdapter = new MenuItemAdapter(ContextRetriever.INSTANCE.getApplicationContext());
     }
 
     public MenuItemAdapterTest(int position, String item) {
@@ -55,7 +51,7 @@ public class MenuItemAdapterTest extends MaterialLifeTestBase {
     }
 
     @Test
-    public void testThatGetItemIdReturnsItemPosition    () {
+    public void testThatGetItemIdReturnsItemPosition() {
         assertThat(menuItemAdapter.getItemId(position)).isEqualTo(position);
     }
 }

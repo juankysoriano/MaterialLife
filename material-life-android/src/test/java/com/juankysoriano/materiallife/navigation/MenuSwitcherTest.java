@@ -1,28 +1,35 @@
 package com.juankysoriano.materiallife.navigation;
 
 import android.annotation.SuppressLint;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.juankysoriano.materiallife.MaterialLifeTestBase;
 import com.juankysoriano.materiallife.R;
-import com.juankysoriano.materiallife.RobolectricMaterialLifeGradleTestRunner;
 import com.juankysoriano.materiallife.editor.WorldEditorMenuFragment;
 import com.juankysoriano.materiallife.imageloader.ImageLoaderFragment;
 import com.juankysoriano.materiallife.menu.MainMenuFragment;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.mockito.Mockito.*;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SuppressLint("CommitTransaction")
-@RunWith(RobolectricMaterialLifeGradleTestRunner.class)
+
 public class MenuSwitcherTest extends MaterialLifeTestBase {
     @Mock
     private FragmentManager fragmentManager;

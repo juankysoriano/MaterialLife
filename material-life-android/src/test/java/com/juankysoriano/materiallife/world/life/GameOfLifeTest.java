@@ -2,7 +2,6 @@ package com.juankysoriano.materiallife.world.life;
 
 import android.view.MotionEvent;
 
-import com.juankysoriano.materiallife.RobolectricMaterialLifeGradleTestRunner;
 import com.juankysoriano.materiallife.MaterialLifeTestBase;
 import com.juankysoriano.rainbow.core.drawing.RainbowDrawer;
 import com.juankysoriano.rainbow.core.event.RainbowInputController;
@@ -11,14 +10,13 @@ import com.openca.bi.discrete.AutomataDiscrete2D;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-@RunWith(RobolectricMaterialLifeGradleTestRunner.class)
+
 public class GameOfLifeTest extends MaterialLifeTestBase {
     private static final int ANY_CELL_X = 0;
     private static final int ANY_CELL_Y = 0;
@@ -45,6 +43,7 @@ public class GameOfLifeTest extends MaterialLifeTestBase {
         MockitoAnnotations.initMocks(this);
         when(gameOfLifeAutomata.getWidth()).thenReturn(AUTOMATA_WIDTH);
         when(gameOfLifeAutomata.getHeight()).thenReturn(AUTOMATA_HEIGHT);
+        when(rainbowInputController.getRainbowDrawer()).thenReturn(rainbowDrawer);
         gameOfLife = new GameOfLife(gameOfLifeAutomata, gameOfLifeDrawer, rainbowInputController);
         givenThatAutomataHasAllCellsDead();
     }
@@ -101,7 +100,7 @@ public class GameOfLifeTest extends MaterialLifeTestBase {
     public void testThatOnFingerDraggedExploresLineForCoordinatesInRainbowInputController() {
         givenThatHasPreviousFingerMovements();
 
-        gameOfLife.onFingerDragged(motionEvent, rainbowDrawer);
+        gameOfLife.onFingerDragged(motionEvent);
 
         verify(rainbowDrawer).exploreLine(rainbowInputController.getPreviousX(),
                 rainbowInputController.getPreviousY(),
@@ -117,7 +116,7 @@ public class GameOfLifeTest extends MaterialLifeTestBase {
 
         assertThat(gameOfLifeAutomata.getCells()[ANY_CELL_X][ANY_CELL_Y]).isEqualTo(DEAD);
 
-        gameOfLife.onPointDetected(ANY_CELL_X, ANY_CELL_Y, ANY_CELL_X, ANY_CELL_Y, rainbowDrawer);
+        gameOfLife.onPointDetected(ANY_CELL_X, ANY_CELL_Y, ANY_CELL_X, ANY_CELL_Y);
 
         assertThat(gameOfLifeAutomata.getCells()[ANY_CELL_X][ANY_CELL_Y]).isEqualTo(ALIVE);
     }

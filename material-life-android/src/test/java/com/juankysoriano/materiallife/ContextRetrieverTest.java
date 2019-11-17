@@ -3,12 +3,13 @@ package com.juankysoriano.materiallife;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
-import androidx.fragment.app.FragmentActivity;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import androidx.fragment.app.FragmentActivity;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -21,8 +22,6 @@ public class ContextRetrieverTest extends MaterialLifeTestBase {
     private Context applicationContext;
     @Mock
     private FragmentActivity activity;
-    @Mock
-    private Context activityContext;
     @Mock
     private Resources androidResources;
 
