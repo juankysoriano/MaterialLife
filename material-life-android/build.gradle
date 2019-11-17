@@ -58,7 +58,6 @@ android {
         implementation 'com.github.juankysoriano:open-ca:v0.2.0-rc2'
         implementation 'com.github.juankysoriano:rainbow:f24762e040'
         implementation 'com.github.ozodrukh:CircularReveal:1.1.1'
-        implementation 'com.google.android.gms:play-services-analytics:17.0.0'
         implementation 'com.android.support:support-annotations:28.0.0'
         implementation('com.novoda:notils:2.2.12') {
             exclude module: 'support-v4'

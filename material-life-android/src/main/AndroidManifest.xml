@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   package="com.juankysoriano.materiallife">
 
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,7 +15,8 @@
     android:icon="@mipmap/ic_launcher"
     android:description="@string/description"
     android:label="@string/app_name"
-    android:theme="@style/MaterialLifeTheme">
+    android:theme="@style/MaterialLifeTheme"
+    tools:ignore="GoogleAppIndexingWarning">
 
     <activity
       android:name=".info.InfoActivity"
