@@ -70,8 +70,22 @@ android {
     }
 }
 
+ext {
+    REPORT_LOCATIONS = ""
+}
 
 apply from: "$project.rootDir/analysis-tools/android-checkstyle.gradle"
 apply from: "$project.rootDir/analysis-tools/android-pmd.gradle"
 
+task lifeCheck dependsOn("check") {
+    println "Finished at: " + new Date()
+
+    println "\n"
+    println REPORT_LOCATIONS
+}
+
+task life dependsOn("build") {
+}
+
+life.dependsOn("lifeCheck")
 
